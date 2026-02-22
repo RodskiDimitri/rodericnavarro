@@ -77,9 +77,9 @@ const Hero = () => {
                                 style={{ position: 'absolute', width: '80%', height: '80%', border: '1px solid var(--accent-secondary)', borderRadius: '50%', opacity: 0.2 }}
                             />
                             <motion.div
-                                style={{ animation: 'float 6s ease-in-out infinite', background: 'var(--bg-tertiary)', padding: '2rem', borderRadius: '50%', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
+                                style={{ animation: 'float 6s ease-in-out infinite', width: '240px', height: '240px', borderRadius: '50%', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 240, 255, 0.2)', border: '4px solid var(--bg-secondary)' }}
                             >
-                                <Terminal size={80} color="var(--accent-primary)" />
+                                <img src="/profile.png" alt="Roderic Navarro" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </motion.div>
                         </div>
                     </motion.div>
