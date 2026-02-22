@@ -32,7 +32,7 @@ const Navbar = () => {
                     setActiveSection(entry.target.id);
                 }
             });
-        }, { threshold: 0.5, rootMargin: "-100px 0px -100px 0px" });
+        }, { threshold: 0.2, rootMargin: "-100px 0px -100px 0px" });
 
         navLinks.forEach((link) => {
             const id = link.href.substring(1);
