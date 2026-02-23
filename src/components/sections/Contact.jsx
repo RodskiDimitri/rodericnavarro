@@ -1,22 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState(false);
+    const formRef = useRef(null);
+
+    // TODO: Replace these with your actual EmailJS credentials
+    // Sign up free at https://www.emailjs.com/
+    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate form submission
-        setTimeout(() => {
-            setIsSubmitting(false);
-            setSubmitted(true);
-            setFormData({ name: '', email: '', message: '' });
-            setTimeout(() => setSubmitted(false), 3000);
-        }, 1500);
+        setError(false);
+
+        emailjs.sendForm(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            formRef.current,
+            EMAILJS_PUBLIC_KEY
+        )
+            .then(() => {
+                setIsSubmitting(false);
+                setSubmitted(true);
+                setFormData({ name: '', email: '', message: '' });
+                setTimeout(() => setSubmitted(false), 5000);
+            })
+            .catch(() => {
+                setIsSubmitting(false);
+                setError(true);
+                setTimeout(() => setError(false), 5000);
+            });
     };
 
     const contactInfo = [
@@ -85,12 +106,13 @@ const Contact = () => {
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
                         <div className="glass p-8" style={{ padding: '2.5rem', borderRadius: '24px' }}>
-                            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                            <form ref={formRef} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 <div>
                                     <label htmlFor="name" style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Name</label>
                                     <input
                                         type="text"
                                         id="name"
+                                        name="user_name"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         required
@@ -104,6 +126,7 @@ const Contact = () => {
                                     <input
                                         type="email"
                                         id="email"
+                                        name="user_email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                         required
@@ -116,6 +139,7 @@ const Contact = () => {
                                     <label htmlFor="message" style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Message</label>
                                     <textarea
                                         id="message"
+                                        name="message"
                                         rows="4"
                                         value={formData.message}
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -126,13 +150,19 @@ const Contact = () => {
                                     ></textarea>
                                 </div>
 
+                                {error && (
+                                    <p style={{ color: '#ff4444', fontSize: '0.9rem', margin: 0, padding: '0.75rem 1rem', background: 'rgba(255,68,68,0.1)', borderRadius: '12px', borderLeft: '3px solid #ff4444' }}>
+                                        Something went wrong. Please try emailing directly at rodericnavarro@yahoo.com
+                                    </p>
+                                )}
+
                                 <button
                                     type="submit"
                                     disabled={isSubmitting || submitted}
                                     className="btn btn-primary"
                                     style={{ width: '100%', marginTop: '1rem' }}
                                 >
-                                    {isSubmitting ? 'Sending...' : submitted ? 'Message Sent!' : (
+                                    {isSubmitting ? 'Sending...' : submitted ? '✓ Message Sent!' : error ? 'Try Again' : (
                                         <>Send Message <Send size={18} /></>
                                     )}
                                 </button>

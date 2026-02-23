@@ -14,13 +14,7 @@ const Experience = () => {
                 "Cut customer service response times from 2 hours to 48 minutes"
             ]
         },
-        {
-            title: "Strategic Consultant",
-            company: "Erin Hill Startup (Texas)",
-            period: "Dec 2024 - Present",
-            description: "Driving strategy development, business model conceptualization, and market analysis for growth.",
-            highlights: ["Market opportunity identification", "Operational framework mapping"]
-        },
+
         {
             title: "IT & Innovation Manager",
             company: "Polianna, LLC",

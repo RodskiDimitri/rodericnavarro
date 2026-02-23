@@ -36,12 +36,12 @@ const About = () => {
                             <div style={{ position: 'absolute', top: '-10px', left: '-10px', width: '40px', height: '40px', borderTop: '3px solid var(--accent-primary)', borderLeft: '3px solid var(--accent-primary)', borderRadius: '8px 0 0 0' }}></div>
                             <div style={{ position: 'absolute', bottom: '-10px', right: '-10px', width: '40px', height: '40px', borderBottom: '3px solid var(--accent-secondary)', borderRight: '3px solid var(--accent-secondary)', borderRadius: '0 0 8px 0' }}></div>
 
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--text-main)' }}>The Visionary Leader</h3>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--text-main)' }}>Turning Complex Tech Into Business Results</h3>
                             <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                                With 17+ years spanning customer service excellence, technical administration, and strategic leadership, I specialize in translating complex technical concepts into actionable business strategies.
+                                With 17+ years spanning customer service excellence, technical administration, and strategic leadership, I specialize in translating complex technical concepts into actionable business strategies that drive measurable ROI.
                             </p>
                             <p style={{ color: 'var(--text-muted)', lineHeight: 1.7 }}>
-                                My personal philosophy centers on a 90% confidence in strategic-planning capabilities, always aiming to simplify the technological landscape for non-technical audiences, from SMEs to government agencies.
+                                I focus on one thing: making technology simple, measurable, and profitable for your business — whether you're an SME looking to automate workflows, a startup scaling fast, or a government agency modernizing operations.
                             </p>
                         </div>
                     </motion.div>

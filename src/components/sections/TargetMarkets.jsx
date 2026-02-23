@@ -8,18 +8,21 @@ const TargetMarkets = () => {
             title: "SMEs",
             icon: <Building2 size={32} />,
             desc: "Technology adoption consulting, specific process optimization, and seamless AI integration to eliminate repetitive workflows and maximize revenue.",
+            example: "e.g., Automated 40% of a client's email workflows in just 2 weeks",
             color: "var(--accent-primary)"
         },
         {
             title: "Startups",
             icon: <Rocket size={32} />,
             desc: "Robust infrastructure setup, scalable growth-oriented AI solutions, and strategic technology planning for rapid acceleration.",
+            example: "",
             color: "var(--accent-secondary)"
         },
         {
             title: "Government Agencies",
             icon: <Landmark size={32} />,
             desc: "Compliance-focused modernization and process consulting, ensuring secure and highly reliable system architectures.",
+            example: "e.g., Maintained 99.8% uptime with zero security breaches for 3 years",
             color: "#00ff88"
         }
     ];
@@ -77,7 +80,22 @@ const TargetMarkets = () => {
                                 {market.icon}
                             </div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--text-main)' }}>{market.title}</h3>
-                            <p style={{ color: 'var(--text-muted)', lineHeight: 1.6, fontSize: '0.95rem' }}>{market.desc}</p>
+                            <p style={{ color: 'var(--text-muted)', lineHeight: 1.6, fontSize: '0.95rem', marginBottom: '1rem' }}>{market.desc}</p>
+                            {market.example && (
+                                <p style={{
+                                    color: market.color,
+                                    fontSize: '0.85rem',
+                                    fontWeight: 500,
+                                    fontStyle: 'italic',
+                                    margin: 0,
+                                    padding: '0.75rem 1rem',
+                                    background: `color-mix(in srgb, ${market.color} 8%, transparent)`,
+                                    borderRadius: '12px',
+                                    borderLeft: `3px solid ${market.color}`
+                                }}>
+                                    {market.example}
+                                </p>
+                            )}
                         </motion.div>
                     ))}
                 </div>
