@@ -8,7 +8,7 @@ const TargetMarkets = () => {
             title: "SMEs",
             icon: <Building2 size={32} />,
             desc: "Technology adoption consulting, specific process optimization, and seamless AI integration to eliminate repetitive workflows and maximize revenue.",
-            example: "e.g., Automated 40% of a client's email workflows in just 2 weeks",
+            example: "",
             color: "var(--accent-primary)"
         },
         {
@@ -22,7 +22,7 @@ const TargetMarkets = () => {
             title: "Government Agencies",
             icon: <Landmark size={32} />,
             desc: "Compliance-focused modernization and process consulting, ensuring secure and highly reliable system architectures.",
-            example: "e.g., Maintained 99.8% uptime with zero security breaches for 3 years",
+            example: "",
             color: "#00ff88"
         }
     ];
