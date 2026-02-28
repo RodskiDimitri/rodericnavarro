@@ -40,6 +40,7 @@ const Skills = () => {
                 { name: "Mistral AI", icon: <BrandIcon name="mistral" color="#F26522" Fallback={Wind} />, brandColor: "#F26522" },
                 { name: "Gemini AI", icon: <BrandIcon name="googlegemini" color="#8E75B2" Fallback={Sparkles} />, brandColor: "#8E75B2" },
                 { name: "Notebook LM", icon: <BrandIcon name="google" color="#4285F4" Fallback={BookOpen} />, brandColor: "#4285F4" },
+                { name: "Antigravity IDE", icon: <img src="https://antigravity.google/assets/image/antigravity-logo.png" alt="Antigravity IDE" style={{ width: '16px', height: '16px', objectFit: 'contain' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />, brandColor: "#4A90D9" },
                 { name: "Prompt Eng.", icon: <Terminal size={16} color="#A855F7" />, brandColor: "#A855F7" }
             ]
         },
