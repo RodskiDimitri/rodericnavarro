@@ -14,27 +14,28 @@ const Experience = () => {
                 "Cut customer service response times from 2 hours to 48 minutes"
             ]
         },
-
         {
             title: "IT & Innovation Manager",
             company: "Polianna, LLC",
-            period: "May 2023 - Jan 2024",
-            description: "Led technology innovation initiatives and managed comprehensive IT infrastructure and strategic planning.",
+            period: "Jan 2020 - Jan 2024",
+            description: "Led technology innovation, IT infrastructure management, and strategic planning. Progressed from System Adviser & Administrator to IT & Innovation Manager, driving transformation across the organization.",
             highlights: [
                 "Delivered $20K+ annual cost savings via vendor negotiations",
                 "Redesigned infrastructure cutting monthly downtime from 8% to <2%",
-                "Increased operational efficiency across 4 departments by 30%"
+                "Increased operational efficiency across 4 departments by 30%",
+                "Maintained 99.8% uptime with zero security breaches over 3 years",
+                "Reduced security incidents by 85% with new IAM deployments"
             ]
         },
         {
-            title: "System Adviser & Administrator",
-            company: "Polianna, LLC",
-            period: "Jan 2020 - May 2023",
-            description: "Spearheaded Google Workspace administration, password identity management, and email security protocols.",
+            title: "IT Administrator",
+            company: "Firestarter Group",
+            period: "Mar 2016 - Dec 2019",
+            description: "Administered complete IT infrastructure including system maintenance, optimization protocols, and end-to-end technical support.",
             highlights: [
-                "Maintained 99.8% uptime with zero security breaches over 3 years",
-                "Reduced security incidents by 85% with new IAM deployments",
-                "Supported 200% company growth by scaling technology systems"
+                "Managed full IT infrastructure for the organization",
+                "Implemented system maintenance and optimization protocols",
+                "Provided comprehensive technical support and troubleshooting"
             ]
         }
     ];

@@ -12,9 +12,9 @@ const Contact = () => {
 
     // TODO: Replace these with your actual EmailJS credentials
     // Sign up free at https://www.emailjs.com/
-    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+    const EMAILJS_SERVICE_ID = 'service_zqu5d1n';
+    const EMAILJS_TEMPLATE_ID = 'template_pk4ss3o';
+    const EMAILJS_PUBLIC_KEY = 'DQ4WuCamKsbzetp0i';
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -65,90 +65,130 @@ const Contact = () => {
                 </motion.div>
 
                 <div className="grid grid-cols-2 gap-8">
-                    {/* Contact Information */}
+                    {/* Left Column: Contact Information Cards */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
+                        style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
                     >
-                        <div className="glass p-8" style={{ padding: '2.5rem', borderRadius: '24px', height: '100%' }}>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', color: 'var(--text-main)' }}>Contact Information</h3>
-
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                                {contactInfo.map((info, idx) => (
-                                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                                        <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(0, 240, 255, 0.1)', color: 'var(--accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            {info.icon}
-                                        </div>
-                                        <div>
-                                            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '0.2rem' }}>{info.title}</p>
-                                            {info.href ? (
-                                                <a href={info.href} style={{ color: 'var(--text-main)', fontWeight: 500, transition: 'color 0.2s' }} onMouseOver={(e) => e.target.style.color = 'var(--accent-primary)'} onMouseOut={(e) => e.target.style.color = 'var(--text-main)'}>
-                                                    {info.value}
-                                                </a>
-                                            ) : (
-                                                <p style={{ color: 'var(--text-main)', fontWeight: 500, margin: 0 }}>{info.value}</p>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
+                        {contactInfo.map((info, idx) => (
+                            <div key={idx} className="glass glow-hover" style={{
+                                padding: '2rem',
+                                borderRadius: '16px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                border: '1px solid var(--glass-border)',
+                                background: 'rgba(255, 255, 255, 0.02)'
+                            }}>
+                                <div style={{
+                                    color: 'var(--accent-primary)',
+                                    marginBottom: '1rem',
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}>
+                                    {info.icon}
+                                </div>
+                                {info.href ? (
+                                    <a href={info.href} style={{
+                                        color: 'var(--text-main)',
+                                        fontWeight: 600,
+                                        fontSize: '1.1rem',
+                                        transition: 'color 0.2s',
+                                        textDecoration: 'none'
+                                    }} onMouseOver={(e) => e.target.style.color = 'var(--accent-primary)'} onMouseOut={(e) => e.target.style.color = 'var(--text-main)'}>
+                                        {info.value}
+                                    </a>
+                                ) : (
+                                    <p style={{ color: 'var(--text-main)', fontWeight: 600, fontSize: '1.1rem', margin: 0 }}>{info.value}</p>
+                                )}
                             </div>
-                        </div>
+                        ))}
                     </motion.div>
 
-                    {/* Contact Form */}
+                    {/* Right Column: Google Map + Contact Form */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.3 }}
+                        style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
                     >
-                        <div className="glass p-8" style={{ padding: '2.5rem', borderRadius: '24px' }}>
+                        {/* Map Area */}
+                        <div style={{
+                            borderRadius: '16px',
+                            overflow: 'hidden',
+                            border: '1px solid var(--glass-border)',
+                            height: '220px',
+                            width: '100%'
+                        }}>
+                            <iframe
+                                title="Location Map - Parañaque City, Metro Manila"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61784.89!2d120.97!3d14.48!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397cf03e564f455%3A0x35e4b7e19eb2544f!2sPara%C3%B1aque%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1709344800000!5m2!1sen!2sph"
+                                width="100%"
+                                height="100%"
+                                style={{
+                                    border: 'none',
+                                    filter: 'grayscale(30%) brightness(0.8) contrast(1.1)',
+                                    transition: 'filter 0.4s ease',
+                                }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                onMouseOver={(e) => e.target.style.filter = 'grayscale(0%) brightness(0.9) contrast(1.05)'}
+                                onMouseOut={(e) => e.target.style.filter = 'grayscale(30%) brightness(0.8) contrast(1.1)'}
+                            ></iframe>
+                        </div>
+
+                        {/* Form Area */}
+                        <div>
+                            <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--text-main)', textAlign: 'left' }}>
+                                How Can I <span className="text-gradient">Help You?</span>
+                            </h3>
+
                             <form ref={formRef} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                <div>
-                                    <label htmlFor="name" style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Name</label>
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                                     <input
                                         type="text"
                                         id="name"
                                         name="user_name"
+                                        placeholder="Full Name"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         required
-                                        style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-main)', outline: 'none', transition: 'border-color 0.3s' }}
+                                        style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.02)', border: '1px solid var(--glass-border)', borderRadius: '12px', color: 'var(--text-main)', outline: 'none', transition: 'border-color 0.3s' }}
                                         onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
-                                        onBlur={(e) => e.target.style.borderColor = 'var(--border-color)'}
+                                        onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
                                     />
-                                </div>
-                                <div>
-                                    <label htmlFor="email" style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Email</label>
                                     <input
                                         type="email"
                                         id="email"
                                         name="user_email"
+                                        placeholder="Email Address"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                         required
-                                        style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-main)', outline: 'none', transition: 'border-color 0.3s' }}
+                                        style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.02)', border: '1px solid var(--glass-border)', borderRadius: '12px', color: 'var(--text-main)', outline: 'none', transition: 'border-color 0.3s' }}
                                         onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
-                                        onBlur={(e) => e.target.style.borderColor = 'var(--border-color)'}
+                                        onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
                                     />
                                 </div>
-                                <div>
-                                    <label htmlFor="message" style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Message</label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        rows="4"
-                                        value={formData.message}
-                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                        required
-                                        style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-main)', outline: 'none', transition: 'border-color 0.3s', resize: 'vertical' }}
-                                        onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
-                                        onBlur={(e) => e.target.style.borderColor = 'var(--border-color)'}
-                                    ></textarea>
-                                </div>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    placeholder="Message"
+                                    rows="5"
+                                    value={formData.message}
+                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                    required
+                                    style={{ width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.02)', border: '1px solid var(--glass-border)', borderRadius: '12px', color: 'var(--text-main)', outline: 'none', transition: 'border-color 0.3s', resize: 'vertical' }}
+                                    onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
+                                    onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
+                                ></textarea>
 
                                 {error && (
                                     <p style={{ color: '#ff4444', fontSize: '0.9rem', margin: 0, padding: '0.75rem 1rem', background: 'rgba(255,68,68,0.1)', borderRadius: '12px', borderLeft: '3px solid #ff4444' }}>
@@ -160,7 +200,7 @@ const Contact = () => {
                                     type="submit"
                                     disabled={isSubmitting || submitted}
                                     className="btn btn-primary"
-                                    style={{ width: '100%', marginTop: '1rem' }}
+                                    style={{ width: '100%', padding: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem' }}
                                 >
                                     {isSubmitting ? 'Sending...' : submitted ? '✓ Message Sent!' : error ? 'Try Again' : (
                                         <>Send Message <Send size={18} /></>
@@ -176,3 +216,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
