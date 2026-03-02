@@ -79,7 +79,7 @@ const Hero = () => {
                             <motion.div
                                 style={{ animation: 'float 6s ease-in-out infinite', width: '240px', height: '240px', borderRadius: '50%', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 240, 255, 0.2)', border: '4px solid var(--bg-secondary)' }}
                             >
-                                <img src="/profile.png" alt="Roderic Navarro" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <img src={`${import.meta.env.BASE_URL}profile.png`} alt="Roderic Navarro" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </motion.div>
                         </div>
                     </motion.div>
