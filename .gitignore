@@ -34,6 +34,7 @@ Personal data/
 # Credentials spreadsheet
 *.xlsx
 *.xls
+~$*
 
 # Raw resume text files
 resume1.txt
