@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import poliannaLogo from '../../../Personal data/polianna logo.jpg';
-import firestartLogo from '../../../Personal data/the_firestarter_group_logo.jpg';
+import poliannaLogo from '../../assets/polianna-logo.jpg';
+import firestartLogo from '../../assets/firestarter-logo.jpg';
 
 const Experience = () => {
     const experiences = [
