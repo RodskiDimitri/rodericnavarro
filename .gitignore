@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies & Build Output
 node_modules
 dist
 dist-ssr
@@ -22,3 +23,35 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ──────────────────────────────────────────────
+# PERSONAL & SENSITIVE DATA — keep local only
+# ──────────────────────────────────────────────
+
+# Personal data folder (resumes, profile docs, photos)
+Personal data/
+
+# Credentials spreadsheet
+*.xlsx
+*.xls
+
+# Raw resume text files
+resume1.txt
+resume2.txt
+
+# ──────────────────────────────────────────────
+# LOCAL UTILITY & SCRATCH FILES
+# ──────────────────────────────────────────────
+
+# One-off Python helper scripts
+read_docs.py
+read_docs2.py
+read_docs3.py
+
+# Test / sync verification files
+test_github_sync.md
+
+# Leftover npm binary / package artifacts
+npm
+web@0.0.0
+npm-shrinkwrap.json
