@@ -48,8 +48,8 @@ const Hero = () => {
                         </p>
 
                         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                            <a href="#markets" className="btn btn-primary">
-                                View My Work <ArrowRight size={18} />
+                            <a href="https://drive.google.com/file/d/1-mxrsbG7iemZe5zizn2sF3u3MKBuhFUg/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                                View Resume <ArrowRight size={18} />
                             </a>
                             <a href="#contact" className="btn btn-outline glow-hover">
                                 Contact Me
