@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import poliannaLogo from '../../../Personal data/polianna logo.jpg';
+import firestartLogo from '../../../Personal data/the_firestarter_group_logo.jpg';
 
 const Experience = () => {
     const experiences = [
@@ -17,6 +19,7 @@ const Experience = () => {
         {
             title: "IT & Innovation Manager",
             company: "Polianna, LLC",
+            logo: poliannaLogo,
             period: "Jan 2020 - Jan 2024",
             description: "Led technology innovation, IT infrastructure management, and strategic planning. Progressed from System Adviser & Administrator to IT & Innovation Manager, driving transformation across the organization.",
             highlights: [
@@ -30,6 +33,7 @@ const Experience = () => {
         {
             title: "IT Administrator",
             company: "Firestarter Group",
+            logo: firestartLogo,
             period: "Mar 2016 - Dec 2019",
             description: "Administered complete IT infrastructure including system maintenance, optimization protocols, and end-to-end technical support.",
             highlights: [
@@ -82,9 +86,26 @@ const Experience = () => {
                                 <div style={{ position: 'absolute', top: '24px', left: '-20px', width: '20px', height: '2px', background: 'var(--glass-border)' }}></div>
 
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
-                                    <div>
-                                        <h3 style={{ fontSize: '1.5rem', color: 'var(--text-main)', margin: 0 }}>{exp.title}</h3>
-                                        <h4 style={{ fontSize: '1.2rem', color: 'var(--accent-secondary)', margin: 0, fontWeight: 500 }}>{exp.company}</h4>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                        {exp.logo && (
+                                            <img
+                                                src={exp.logo}
+                                                alt={`${exp.company} logo`}
+                                                style={{
+                                                    width: '48px',
+                                                    height: '48px',
+                                                    objectFit: 'contain',
+                                                    borderRadius: '8px',
+                                                    background: 'rgba(255,255,255,0.08)',
+                                                    padding: '4px',
+                                                    flexShrink: 0
+                                                }}
+                                            />
+                                        )}
+                                        <div>
+                                            <h3 style={{ fontSize: '1.5rem', color: 'var(--text-main)', margin: 0 }}>{exp.title}</h3>
+                                            <h4 style={{ fontSize: '1.2rem', color: 'var(--accent-secondary)', margin: 0, fontWeight: 500 }}>{exp.company}</h4>
+                                        </div>
                                     </div>
                                     <span style={{
                                         padding: '0.4rem 1rem',
