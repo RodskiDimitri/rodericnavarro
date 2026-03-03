@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, Zap, DollarSign, Clock } from 'lucide-react';
+import { TrendingUp, Zap, DollarSign, Clock, Shield } from 'lucide-react';
 
 const useCountUp = (end, duration = 2000, startCounting = false) => {
     const [count, setCount] = useState(0);
@@ -33,7 +33,7 @@ const useCountUp = (end, duration = 2000, startCounting = false) => {
     return count;
 };
 
-const StatCard = ({ icon, value, suffix, prefix, label, delay, color }) => {
+const StatCard = ({ icon, value, suffix, prefix, label, delay, color, description }) => {
     const [isVisible, setIsVisible] = useState(false);
     const cardRef = useRef(null);
 
@@ -118,14 +118,27 @@ const StatCard = ({ icon, value, suffix, prefix, label, delay, color }) => {
                 </div>
 
                 <p style={{
-                    color: 'var(--text-muted)',
-                    fontSize: '0.95rem',
-                    fontWeight: 500,
+                    color: 'var(--text-main)',
+                    fontSize: '1.1rem',
+                    fontWeight: 600,
                     margin: 0,
                     lineHeight: 1.4
                 }}>
                     {label}
                 </p>
+                {description && (
+                    <p style={{
+                        color: 'var(--text-muted)',
+                        fontSize: '0.9rem',
+                        fontWeight: 400,
+                        margin: 0,
+                        lineHeight: 1.5,
+                        opacity: 0.9,
+                        marginTop: '-0.5rem'
+                    }}>
+                        {description}
+                    </p>
+                )}
             </div>
         </motion.div>
     );
@@ -135,10 +148,11 @@ const ResultsAtGlance = () => {
     const stats = [
         {
             icon: <Zap size={26} />,
-            value: 40,
-            suffix: '%',
+            value: 15,
+            suffix: '+',
             prefix: '',
-            label: 'Repetitive Workflows Eliminated',
+            label: 'Hours Saved Weekly per Client',
+            description: 'Directed the implementation of AI solutions for SME clients, fully automating manual workflows and eliminating repetitive tasks.',
             color: 'var(--accent-primary)'
         },
         {
@@ -146,7 +160,8 @@ const ResultsAtGlance = () => {
             value: 35,
             suffix: '%',
             prefix: '',
-            label: 'Client Productivity Boost in 30 Days',
+            label: 'Client Productivity Boost',
+            description: 'Achieved in just 30 days by leading the integration of efficiency strategies and driving team adoption of new tools.',
             color: 'var(--accent-secondary)'
         },
         {
@@ -155,14 +170,16 @@ const ResultsAtGlance = () => {
             suffix: 'K+',
             prefix: '$',
             label: 'Annual Savings Generated',
+            description: 'Delivered bottom-line impact through strategic vendor negotiations, contract management, and process optimization.',
             color: '#00ff88'
         },
         {
-            icon: <Clock size={26} />,
-            value: 48,
-            suffix: ' min',
+            icon: <Shield size={26} />,
+            value: 85,
+            suffix: '%',
             prefix: '',
-            label: 'Avg. Response Time (was 2 hrs)',
+            label: 'Drop in Security Incidents',
+            description: 'Managed the rollout of comprehensive identity management systems and security protocols across 100+ user environments.',
             color: '#ff007f'
         }
     ];

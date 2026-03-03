@@ -6,7 +6,7 @@ const About = () => {
     const stats = [
         { icon: <Briefcase size={24} />, value: "17+", label: "Years Experience" },
         { icon: <TrendingUp size={24} />, value: "$50K+", label: "Annual Savings Generated" },
-        { icon: <Award size={24} />, value: "30%", label: "Avg. Efficiency Increase" }
+        { icon: <Award size={24} />, value: "99.8%", label: "System Uptime Maintained" }
     ];
 
     return (
@@ -38,10 +38,13 @@ const About = () => {
 
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--text-main)' }}>Turning Complex Tech Into Business Results</h3>
                             <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                                With 17+ years spanning customer service excellence, technical administration, and strategic leadership, I specialize in translating complex technical concepts into actionable business strategies that drive measurable ROI.
+                                With 17+ years spanning customer service excellence, technical administration, and strategic leadership, I specialize in directing complex IT operations and translating technical concepts into actionable business strategies that drive measurable ROI.
+                            </p>
+                            <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+                                As an IT & Innovation Manager, I oversee comprehensive technology strategies and currently manage enterprise Google Workspace environments for organizations including Firestarter Group and Polianna. My focus is on empowering teams, negotiating enterprise contracts to cut costs, and leading initiatives that directly translate to saved time and increased revenue.
                             </p>
                             <p style={{ color: 'var(--text-muted)', lineHeight: 1.7 }}>
-                                I focus on one thing: making technology simple, measurable, and profitable for your business — whether you're an SME looking to automate workflows, a startup scaling fast, or a government agency modernizing operations.
+                                My core strengths include: <strong>Strategic Planning & Vision Formulation</strong>, <strong>Cross-Cultural Team Leadership</strong>, and <strong>Business Process Optimization</strong>.
                             </p>
                         </div>
                     </motion.div>

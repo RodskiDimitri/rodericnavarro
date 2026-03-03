@@ -11,7 +11,7 @@ const Experience = () => {
             period: "Dec 2024 - Present",
             description: "Strategic AI implementation consulting for SMEs. Custom prompt engineering and chatbot development resulting in significant process optimization.",
             highlights: [
-                "Eliminated 40% of repetitive workflows for 5 SME clients",
+                "Automated and eliminated repetitive workflows for SME clients",
                 "Boosted client productivity by 35% within 30 days",
                 "Cut customer service response times from 2 hours to 48 minutes"
             ]
