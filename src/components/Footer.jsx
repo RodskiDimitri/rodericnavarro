@@ -18,8 +18,11 @@ const Footer = () => {
                     <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontFamily: 'var(--font-heading)' }}>
                         RODERIC<span className="text-gradient">.AI</span>
                     </h2>
-                    <p style={{ color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '400px', marginBottom: '1.5rem' }}>
+                    <p style={{ color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '400px', marginBottom: '0.75rem' }}>
                         Transforming business operations through intelligent AI integration and robust network infrastructure solutions.
+                    </p>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+                        Based in Parañaque City, Metro Manila, Philippines
                     </p>
                     <div style={{ display: 'flex', gap: '1rem' }}>
                         <a href="https://linkedin.com/in/rodericnavarro" target="_blank" rel="noreferrer" className="social-icon">

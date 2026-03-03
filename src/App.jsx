@@ -13,7 +13,7 @@ import Contact from './components/sections/Contact';
 function App() {
   // Use a smooth scrolling script to adjust offset if needed
   useEffect(() => {
-    document.title = "Roderic Navarro | AI Technology";
+    document.title = "Roderic Navarro | AI Consultant in Parañaque, Metro Manila";
   }, []);
 
   return (
