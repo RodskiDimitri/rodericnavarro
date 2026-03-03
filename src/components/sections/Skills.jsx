@@ -36,8 +36,8 @@ const Skills = () => {
             bgColor: "rgba(59, 130, 246, 0.1)",
             skills: [
                 { name: "Claude Pro", icon: <BrandIcon name="anthropic" color="#D97757" Fallback={Brain} />, brandColor: "#D97757" },
-                { name: "ChatGPT", icon: <BrandIcon name="openai" color="#10A37F" Fallback={MessageSquare} />, brandColor: "#10A37F" },
-                { name: "Mistral AI", icon: <BrandIcon name="mistral" color="#F26522" Fallback={Wind} />, brandColor: "#F26522" },
+                { name: "ChatGPT", icon: <MessageSquare size={16} color="#10A37F" />, brandColor: "#10A37F" },
+                { name: "Mistral AI", icon: <BrandIcon name="mistralai" color="#F26522" Fallback={Wind} />, brandColor: "#F26522" },
                 { name: "Gemini AI", icon: <BrandIcon name="googlegemini" color="#8E75B2" Fallback={Sparkles} />, brandColor: "#8E75B2" },
                 { name: "Notebook LM", icon: <BrandIcon name="google" color="#4285F4" Fallback={BookOpen} />, brandColor: "#4285F4" },
                 { name: "Antigravity IDE", icon: <img src="https://antigravity.google/assets/image/antigravity-logo.png" alt="Antigravity IDE" style={{ width: '16px', height: '16px', objectFit: 'contain' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />, brandColor: "#4A90D9" },
@@ -62,9 +62,9 @@ const Skills = () => {
             color: "#ec4899",
             bgColor: "rgba(236, 72, 153, 0.1)",
             skills: [
-                { name: "Google Workspace", icon: <BrandIcon name="googleworkspace" color="#4285F4" Fallback={Cloud} />, brandColor: "#4285F4" },
-                { name: "MS Office 2021", icon: <BrandIcon name="microsoft" color="#D83B01" Fallback={FileText} />, brandColor: "#D83B01" },
-                { name: "Windows 11", icon: <BrandIcon name="windows11" color="#0078D4" Fallback={Monitor} />, brandColor: "#0078D4" },
+                { name: "Google Workspace", icon: <BrandIcon name="google" color="#4285F4" Fallback={Cloud} />, brandColor: "#4285F4" },
+                { name: "MS Office 2021", icon: <FileText size={16} color="#D83B01" />, brandColor: "#D83B01" },
+                { name: "Windows 11", icon: <Monitor size={16} color="#0078D4" />, brandColor: "#0078D4" },
                 { name: "Project Mgmt", icon: <CheckSquare size={16} color="#EAB308" />, brandColor: "#EAB308" }
             ]
         },
