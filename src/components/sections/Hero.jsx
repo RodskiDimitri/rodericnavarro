@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Terminal } from 'lucide-react';
+import ParticleNetwork from '../ui/ParticleNetwork';
 
 const Hero = () => {
     return (
@@ -76,8 +77,20 @@ const Hero = () => {
                                 transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
                                 style={{ position: 'absolute', width: '80%', height: '80%', border: '1px solid var(--accent-secondary)', borderRadius: '50%', opacity: 0.2 }}
                             />
+
+                            {/* Neural Network Background inside glass ring */}
+                            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', opacity: 0.8, zIndex: 0 }}>
+                                <ParticleNetwork
+                                    particleColor="rgba(0, 240, 255, 0.4)"
+                                    lineColor="rgba(0, 240, 255, 0.2)"
+                                    particleCount={40}
+                                    connectionDistance={120}
+                                    speed={0.4}
+                                />
+                            </div>
+
                             <motion.div
-                                style={{ animation: 'float 6s ease-in-out infinite', width: '240px', height: '240px', borderRadius: '50%', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 240, 255, 0.2)', border: '4px solid var(--bg-secondary)' }}
+                                style={{ animation: 'float 6s ease-in-out infinite', width: '240px', height: '240px', borderRadius: '50%', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 240, 255, 0.2)', border: '4px solid var(--bg-secondary)', position: 'relative', zIndex: 10 }}
                             >
                                 <img src={`${import.meta.env.BASE_URL}profile.png`} alt="Roderic Navarro" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </motion.div>
