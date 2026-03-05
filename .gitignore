@@ -30,6 +30,7 @@ dist-ssr
 
 # Personal data folder (resumes, profile docs, photos)
 Personal data/
+!Personal data/Md file/
 
 # Credentials spreadsheet
 *.xlsx
