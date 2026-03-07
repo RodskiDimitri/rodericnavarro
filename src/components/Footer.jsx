@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { siteConfig } from '../data/config';
 
 const Footer = () => {
     const scrollToTop = () => {
@@ -19,16 +20,16 @@ const Footer = () => {
                         RODERIC<span className="text-gradient">.AI</span>
                     </h2>
                     <p style={{ color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '400px', marginBottom: '0.75rem' }}>
-                        Transforming business operations through intelligent AI integration and robust network infrastructure solutions.
+                        {siteConfig.meta.footerDescription}
                     </p>
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '1.5rem', opacity: 0.8 }}>
-                        Based in Parañaque City, Metro Manila, Philippines
+                        Based in {siteConfig.personal.location}
                     </p>
                     <div style={{ display: 'flex', gap: '1rem' }}>
-                        <a href="https://linkedin.com/in/rodericnavarro" target="_blank" rel="noreferrer" className="social-icon">
+                        <a href={siteConfig.social.linkedin} target="_blank" rel="noreferrer" className="social-icon">
                             <Linkedin size={20} />
                         </a>
-                        <a href="mailto:rodericnavarro@yahoo.com" className="social-icon">
+                        <a href={`mailto:${siteConfig.personal.email}`} className="social-icon">
                             <Mail size={20} />
                         </a>
                     </div>
@@ -41,7 +42,7 @@ const Footer = () => {
 
                     <div style={{ textAlign: 'right', marginTop: 'auto' }}>
                         <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                            &copy; {new Date().getFullYear()} Roderic G. Navarro. All rights reserved.
+                            &copy; {new Date().getFullYear()} {siteConfig.personal.fullName}. All rights reserved.
                         </p>
                     </div>
                 </div>

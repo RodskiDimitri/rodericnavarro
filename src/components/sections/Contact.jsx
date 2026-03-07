@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { siteConfig } from '../../data/config';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -10,11 +11,9 @@ const Contact = () => {
     const [error, setError] = useState(false);
     const formRef = useRef(null);
 
-    // TODO: Replace these with your actual EmailJS credentials
-    // Sign up free at https://www.emailjs.com/
-    const EMAILJS_SERVICE_ID = 'service_zqu5d1n';
-    const EMAILJS_TEMPLATE_ID = 'template_pk4ss3o';
-    const EMAILJS_PUBLIC_KEY = 'DQ4WuCamKsbzetp0i';
+    const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,9 +40,9 @@ const Contact = () => {
     };
 
     const contactInfo = [
-        { icon: <Mail size={24} />, title: "Email", value: "rodericnavarro@yahoo.com", href: "mailto:rodericnavarro@yahoo.com" },
-        { icon: <Phone size={24} />, title: "Phone", value: "+63 927 023 7088", href: "tel:+639270237088" },
-        { icon: <MapPin size={24} />, title: "Location", value: "Parañaque City, Metro Manila", href: null }
+        { icon: <Mail size={24} />, title: "Email", value: siteConfig.personal.email, href: `mailto:${siteConfig.personal.email}` },
+        { icon: <Phone size={24} />, title: "Phone", value: siteConfig.personal.phone, href: `tel:${siteConfig.personal.phone.replace(/[^0-9+]/g, '')}` },
+        { icon: <MapPin size={24} />, title: "Location", value: siteConfig.personal.shortLocation, href: null }
     ];
 
     return (
@@ -192,7 +191,7 @@ const Contact = () => {
 
                                 {error && (
                                     <p style={{ color: '#ff4444', fontSize: '0.9rem', margin: 0, padding: '0.75rem 1rem', background: 'rgba(255,68,68,0.1)', borderRadius: '12px', borderLeft: '3px solid #ff4444' }}>
-                                        Something went wrong. Please try emailing directly at rodericnavarro@yahoo.com
+                                        Something went wrong. Please try emailing directly at {siteConfig.personal.email}
                                     </p>
                                 )}
 

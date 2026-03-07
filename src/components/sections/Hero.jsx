@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Terminal } from 'lucide-react';
 import ParticleNetwork from '../ui/ParticleNetwork';
+import { siteConfig } from '../../data/config';
 
 const Hero = ({ setActiveSection }) => {
     return (
@@ -36,7 +37,7 @@ const Hero = ({ setActiveSection }) => {
 
                         <h1 style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', lineHeight: 1.1, marginBottom: '1.5rem', fontWeight: 700 }}>
                             Hi, I'm <br />
-                            <span className="text-gradient">Roderic Navarro</span>
+                            <span className="text-gradient">{siteConfig.personal.name}</span>
                         </h1>
 
                         <h2 style={{ fontSize: '1.5rem', fontWeight: 400, color: 'var(--text-main)', marginBottom: '1.5rem' }}>
@@ -44,7 +45,7 @@ const Hero = ({ setActiveSection }) => {
                         </h2>
 
                         <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '2.5rem', maxWidth: '500px' }}>
-                            Delivering measurable business impact through intelligent AI integration, workflow automation, and robust network infrastructure solutions.
+                            {siteConfig.meta.description}
                         </p>
 
                         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>

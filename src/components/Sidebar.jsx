@@ -1,6 +1,7 @@
 import React from 'react';
 import { Linkedin, Mail } from 'lucide-react';
 import ParticleNetwork from './ui/ParticleNetwork';
+import { siteConfig } from '../data/config';
 
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const navLinks = [
@@ -35,11 +36,11 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
               />
             </div>
           </div>
-          <h2>Roderic Navarro</h2>
-          <p className="title">Strategic Technology Leader & AI Consultant</p>
+          <h2>{siteConfig.personal.name}</h2>
+          <p className="title">{siteConfig.personal.role}</p>
 
           <div className="social-links">
-            <a href="https://linkedin.com/in/rodericnavarro" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /></a>
+            <a href={siteConfig.social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /></a>
             <button onClick={() => setActiveSection('contact')} aria-label="Email" style={{ padding: 0, border: 'none', background: 'none', display: 'flex' }}>
               <div className="social-btn"><Mail size={20} /></div>
             </button>
@@ -67,7 +68,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
         <div className="sidebar-footer">
           <button onClick={() => setActiveSection('contact')} className="btn btn-primary w-full">Let's Talk</button>
           <div style={{ marginTop: '1.5rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.75rem', opacity: 0.6, lineHeight: 1.5 }}>
-            &copy; {new Date().getFullYear()} Roderic G. Navarro.<br />All rights reserved.
+            &copy; {new Date().getFullYear()} {siteConfig.personal.fullName}.<br />All rights reserved.
           </div>
         </div>
       </div>
