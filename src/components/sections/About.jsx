@@ -25,7 +25,7 @@ const About = () => {
                     <div style={{ width: '60px', height: '4px', background: 'linear-gradient(90deg, var(--accent-primary), var(--accent-secondary))', margin: '0 auto', borderRadius: '2px' }}></div>
                 </motion.div>
 
-                <div className="grid grid-cols-2 gap-8 items-center">
+                <div className="grid grid-cols-2 gap-8" style={{ alignItems: 'flex-start' }}>
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -49,7 +49,7 @@ const About = () => {
                         </div>
                     </motion.div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '2.5rem' }}>
                         {stats.map((stat, index) => (
                             <motion.div
                                 key={index}

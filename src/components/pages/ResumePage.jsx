@@ -8,7 +8,7 @@ const ResumePage = () => {
             <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', textAlign: 'center', flexShrink: 0 }}>
                 My <span className="text-gradient">Resume</span>
             </h2>
-            <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto', flexShrink: 0 }}>
+            <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem auto', flexShrink: 0 }}>
                 Career journey and technical expertise
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', flex: 1, overflow: 'hidden' }} className="resume-grid">
