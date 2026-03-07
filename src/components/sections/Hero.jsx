@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Terminal } from 'lucide-react';
 import ParticleNetwork from '../ui/ParticleNetwork';
 
-const Hero = () => {
+const Hero = ({ setActiveSection }) => {
     return (
         <section id="home" className="section" style={{
             minHeight: '100vh',
@@ -52,9 +52,13 @@ const Hero = () => {
                             <a href="https://drive.google.com/file/d/1-mxrsbG7iemZe5zizn2sF3u3MKBuhFUg/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
                                 View Resume <ArrowRight size={18} />
                             </a>
-                            <a href="#contact" className="btn btn-outline glow-hover">
+                            <button
+                                onClick={() => setActiveSection('contact')}
+                                className="btn btn-outline glow-hover"
+                                style={{ cursor: 'pointer' }}
+                            >
                                 Contact Me
-                            </a>
+                            </button>
                         </div>
                     </motion.div>
 

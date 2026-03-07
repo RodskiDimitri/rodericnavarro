@@ -17,7 +17,7 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6 }}
-                    style={{ textAlign: 'center', marginBottom: '4rem' }}
+                    style={{ textAlign: 'center', marginBottom: '2rem' }}
                 >
                     <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', display: 'inline-block' }}>
                         About <span className="text-gradient">Me</span>

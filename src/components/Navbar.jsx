@@ -6,20 +6,11 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     const navLinks = [
         { name: 'Home', id: 'home' },
         { name: 'About', id: 'about' },
-        { name: 'Skills', id: 'skills' },
-        { name: 'Experience', id: 'experience' },
-        { name: 'Clients', id: 'markets' },
+        { name: 'Resume', id: 'resume' },
+        { name: 'Clients', id: 'clients' },
         { name: 'Contact', id: 'contact' }
     ];
 

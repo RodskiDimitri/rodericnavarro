@@ -100,19 +100,19 @@ const Skills = () => {
         },
         header: {
             textAlign: 'center',
-            marginBottom: '4rem',
+            marginBottom: '2rem',
         },
         heading: {
-            fontSize: '2.5rem',
-            marginBottom: '1rem',
+            fontSize: '1.5rem',
+            marginBottom: '0.5rem',
             display: 'inline-block',
         },
         subtitle: {
             color: 'var(--text-muted)',
-            maxWidth: '640px',
+            maxWidth: '500px',
             margin: '0 auto',
-            fontSize: '1.1rem',
-            lineHeight: 1.7,
+            fontSize: '0.9rem',
+            lineHeight: 1.5,
         },
         divider: {
             width: '60px',
@@ -124,13 +124,13 @@ const Skills = () => {
         grid: {
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '2rem',
+            gap: '1rem',
         },
         card: {
             position: 'relative',
             overflow: 'hidden',
-            borderRadius: '24px',
-            padding: '2.5rem',
+            borderRadius: '16px',
+            padding: '1.25rem',
         },
         cardAccent: {
             position: 'absolute',
@@ -142,16 +142,16 @@ const Skills = () => {
         cardHeader: {
             display: 'flex',
             alignItems: 'center',
-            gap: '1rem',
-            marginBottom: '1.5rem',
+            gap: '0.75rem',
+            marginBottom: '1rem',
         },
         iconBox: {
-            padding: '0.75rem',
-            borderRadius: '12px',
+            padding: '0.5rem',
+            borderRadius: '8px',
             transition: 'transform 0.3s ease',
         },
         cardTitle: {
-            fontSize: '1.4rem',
+            fontSize: '1rem',
             fontWeight: 600,
             color: 'var(--text-main)',
             margin: 0,
@@ -159,18 +159,18 @@ const Skills = () => {
         skillsWrap: {
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '0.75rem',
+            gap: '0.5rem',
         },
         badge: {
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.5rem 1rem',
+            gap: '0.4rem',
+            padding: '0.35rem 0.75rem',
             borderRadius: '9999px',
             border: '1px solid rgba(255, 255, 255, 0.1)',
             background: 'rgba(255, 255, 255, 0.03)',
             color: 'var(--text-muted)',
-            fontSize: '0.85rem',
+            fontSize: '0.75rem',
             fontWeight: 500,
             cursor: 'default',
             transition: 'all 0.3s ease',
@@ -178,8 +178,8 @@ const Skills = () => {
     };
 
     return (
-        <section id="skills" className="section" style={styles.section}>
-            <div className="container">
+        <section id="skills" style={styles.section}>
+            <div>
 
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}

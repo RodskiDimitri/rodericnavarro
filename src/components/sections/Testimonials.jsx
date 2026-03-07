@@ -11,11 +11,11 @@ const TestimonialCard = ({ quote, name, role, industry, rating, delay, accentCol
             transition={{ duration: 0.5, delay }}
             className="glass glow-hover"
             style={{
-                padding: '2.5rem 2rem',
-                borderRadius: '24px',
+                padding: '1.5rem 1.25rem',
+                borderRadius: '16px',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1.5rem',
+                gap: '1rem',
                 position: 'relative',
                 overflow: 'hidden',
                 height: '100%'
@@ -42,8 +42,8 @@ const TestimonialCard = ({ quote, name, role, industry, rating, delay, accentCol
             {/* Quote text */}
             <p style={{
                 color: 'var(--text-main)',
-                fontSize: '1.05rem',
-                lineHeight: 1.7,
+                fontSize: '0.9rem',
+                lineHeight: 1.5,
                 fontStyle: 'italic',
                 flex: 1,
                 position: 'relative',
@@ -127,9 +127,10 @@ const Testimonials = () => {
     ];
 
     return (
-        <section id="testimonials" className="section" style={{
+        <section id="testimonials" style={{
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            padding: '2rem 0'
         }}>
             {/* Decorative elements */}
             <div style={{
@@ -161,12 +162,12 @@ const Testimonials = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    style={{ textAlign: 'center', marginBottom: '4rem' }}
+                    style={{ textAlign: 'center', marginBottom: '2rem' }}
                 >
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+                    <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>
                         What Clients <span className="text-gradient">Say</span>
                     </h2>
-                    <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>
+                    <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto', fontSize: '0.9rem' }}>
                         Real feedback from business leaders who experienced measurable transformation.
                     </p>
                 </motion.div>

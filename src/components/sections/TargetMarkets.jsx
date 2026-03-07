@@ -28,7 +28,7 @@ const TargetMarkets = () => {
     ];
 
     return (
-        <section id="markets" className="section" style={{ background: 'var(--bg-secondary)', position: 'relative', overflow: 'hidden' }}>
+        <section id="markets" style={{ position: 'relative', overflow: 'hidden', padding: '2rem 0' }}>
 
             {/* Background elements */}
             <div style={{ position: 'absolute', top: 0, right: 0, width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(112,0,255,0.1) 0%, rgba(0,0,0,0) 70%)', transform: 'translate(30%, -30%)' }}></div>
@@ -40,12 +40,12 @@ const TargetMarkets = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    style={{ textAlign: 'center', marginBottom: '4rem' }}
+                    style={{ textAlign: 'center', marginBottom: '2rem' }}
                 >
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+                    <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>
                         Who I <span className="text-gradient">Help</span>
                     </h2>
-                    <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>
+                    <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto', fontSize: '0.9rem' }}>
                         Empowering diverse organizations through tailored strategies that translate complex technology into actionable business value.
                     </p>
                 </motion.div>
@@ -60,8 +60,8 @@ const TargetMarkets = () => {
                             transition={{ duration: 0.5, delay: idx * 0.15 }}
                             className="glass glow-hover"
                             style={{
-                                padding: '3rem 2rem',
-                                borderRadius: '24px',
+                                padding: '2rem 1.5rem',
+                                borderRadius: '16px',
                                 textAlign: 'center',
                                 display: 'flex',
                                 flexDirection: 'column',

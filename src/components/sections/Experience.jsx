@@ -45,24 +45,24 @@ const Experience = () => {
     ];
 
     return (
-        <section id="experience" className="section">
-            <div className="container">
+        <section id="experience" style={{ position: 'relative' }}>
+            <div>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    style={{ textAlign: 'center', marginBottom: '4rem' }}
+                    style={{ textAlign: 'center', marginBottom: '2rem' }}
                 >
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>
                         Professional <span className="text-gradient">Journey</span>
-                    </h2>
-                    <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>
-                        A track record of driving innovation, optimizing operations, and delivering quantifiable business impact.
+                    </h3>
+                    <p style={{ color: 'var(--text-muted)', maxWidth: '500px', margin: '0 auto', fontSize: '0.9rem' }}>
+                        Driving innovation and delivering quantifiable business impact.
                     </p>
                 </motion.div>
 
-                <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative', paddingLeft: '50px' }}>
+                <div style={{ maxWidth: '100%', position: 'relative', paddingLeft: '40px' }}>
                     {/* Vertical Connecting Line */}
                     <div style={{ position: 'absolute', left: '19px', top: '24px', bottom: '0', width: '2px', background: 'linear-gradient(to bottom, var(--accent-primary), transparent)' }}></div>
 
@@ -73,10 +73,10 @@ const Experience = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
-                            style={{ position: 'relative', display: 'flex', gap: '2rem', marginBottom: '3rem' }}
+                            style={{ position: 'relative', display: 'flex', gap: '1rem', marginBottom: '2rem' }}
                         >
                             {/* Timeline dot */}
-                            <div style={{ position: 'absolute', left: '-50px', width: '40px', display: 'flex', justifyContent: 'center' }}>
+                            <div style={{ position: 'absolute', left: '-40px', width: '30px', display: 'flex', justifyContent: 'center' }}>
                                 <motion.div
                                     initial={{ scale: 0 }}
                                     whileInView={{ scale: 1 }}
@@ -86,7 +86,7 @@ const Experience = () => {
                             </div>
 
                             {/* Content Card */}
-                            <div className="glass glow-hover" style={{ flex: 1, padding: '2rem', borderRadius: '16px', position: 'relative', overflow: 'hidden' }}>
+                            <div className="glass glow-hover" style={{ flex: 1, padding: '1.25rem', borderRadius: '12px', position: 'relative', overflow: 'hidden' }}>
                                 {/* Decorative Gradient Blob */}
                                 <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '150px', height: '150px', background: 'var(--accent-primary)', opacity: 0.05, filter: 'blur(40px)', borderRadius: '50%' }}></div>
 
@@ -108,8 +108,8 @@ const Experience = () => {
                                             />
                                         )}
                                         <div>
-                                            <h3 style={{ fontSize: '1.5rem', color: 'var(--text-main)', margin: 0 }}>{exp.title}</h3>
-                                            <h4 style={{ fontSize: '1.2rem', color: 'var(--accent-secondary)', margin: 0, fontWeight: 500 }}>{exp.company}</h4>
+                                            <h3 style={{ fontSize: '1.1rem', color: 'var(--text-main)', margin: 0 }}>{exp.title}</h3>
+                                            <h4 style={{ fontSize: '0.95rem', color: 'var(--accent-secondary)', margin: 0, fontWeight: 500 }}>{exp.company}</h4>
                                         </div>
                                     </div>
                                     <span style={{
@@ -124,13 +124,13 @@ const Experience = () => {
                                     </span>
                                 </div>
 
-                                <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', lineHeight: 1.6 }}>{exp.description}</p>
+                                <p style={{ color: 'var(--text-muted)', marginBottom: '0.75rem', lineHeight: 1.5, fontSize: '0.85rem' }}>{exp.description}</p>
 
                                 <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
                                     {exp.highlights.map((highlight, hIdx) => (
-                                        <li key={hIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.75rem', color: 'var(--text-main)' }}>
-                                            <span style={{ color: 'var(--accent-primary)', marginTop: '4px' }}>▹</span>
-                                            <span style={{ fontSize: '0.95rem', lineHeight: 1.5 }}>{highlight}</span>
+                                        <li key={hIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.4rem', color: 'var(--text-main)' }}>
+                                            <span style={{ color: 'var(--accent-primary)', marginTop: '3px', fontSize: '0.8rem' }}>▹</span>
+                                            <span style={{ fontSize: '0.82rem', lineHeight: 1.4 }}>{highlight}</span>
                                         </li>
                                     ))}
                                 </ul>
