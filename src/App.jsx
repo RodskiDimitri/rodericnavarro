@@ -90,8 +90,8 @@ function App() {
       <div className="layout-wrapper">
         <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
 
-        <div className="main-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-          <main className="custom-scrollbar" style={{ flex: 1, position: 'relative', overflowX: 'hidden', overflowY: 'auto' }}>
+        <div className="main-card" style={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
+          <main style={{ flex: 1, position: 'relative' }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeSection} // changing the key triggers the animation
