@@ -35,12 +35,12 @@ const Hero = ({ setActiveSection }) => {
                             Available for New Projects
                         </motion.div>
 
-                        <h1 style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', lineHeight: 1.1, marginBottom: '1.5rem', fontWeight: 700 }}>
+                        <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', lineHeight: 1.1, marginBottom: '1.5rem', fontWeight: 700 }}>
                             Hi, I'm <br />
                             <span className="text-gradient">{siteConfig.personal.name}</span>
                         </h1>
 
-                        <h2 style={{ fontSize: '1.5rem', fontWeight: 400, color: 'var(--text-main)', marginBottom: '1.5rem' }}>
+                        <h2 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', fontWeight: 400, color: 'var(--text-main)', marginBottom: '1.5rem' }}>
                             Strategic <span style={{ color: 'var(--accent-primary)', fontWeight: 600 }}>Technology Leader</span> & <span style={{ color: 'var(--accent-secondary)', fontWeight: 600 }}>AI Consultant</span>
                         </h2>
 

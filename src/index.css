@@ -38,10 +38,13 @@ html {
   background-color: var(--bg-main);
   color: var(--text-main);
   font-family: var(--font-body);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
   overflow-x: hidden;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
   /* Updated Background */
   background: linear-gradient(135deg, var(--bg-main) 0%, #15151e 100%);
@@ -110,6 +113,7 @@ a {
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
+  overflow-x: hidden;
 }
 
 /* Vertical divider between sidebar and main card on desktop */
@@ -149,7 +153,9 @@ a {
   .layout-wrapper {
     flex-direction: column;
     padding: 1rem;
+    padding-top: 5rem;
     gap: 1rem;
+    overflow-x: hidden;
   }
 
   .main-card {
@@ -297,4 +303,15 @@ a {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--accent-primary);
+}
+
+/* Responsive padding for cards */
+.p-responsive {
+  padding: 2.5rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .p-responsive {
+    padding: 1.5rem 1rem;
+  }
 }

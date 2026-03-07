@@ -32,9 +32,9 @@ const About = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        <div className="glass p-8" style={{ padding: '2.5rem', borderRadius: '24px', position: 'relative' }}>
-                            <div style={{ position: 'absolute', top: '-10px', left: '-10px', width: '40px', height: '40px', borderTop: '3px solid var(--accent-primary)', borderLeft: '3px solid var(--accent-primary)', borderRadius: '8px 0 0 0' }}></div>
-                            <div style={{ position: 'absolute', bottom: '-10px', right: '-10px', width: '40px', height: '40px', borderBottom: '3px solid var(--accent-secondary)', borderRight: '3px solid var(--accent-secondary)', borderRadius: '0 0 8px 0' }}></div>
+                        <div className="glass p-responsive" style={{ borderRadius: '24px', position: 'relative' }}>
+                            <div className="hidden-mobile" style={{ position: 'absolute', top: '-10px', left: '-10px', width: '40px', height: '40px', borderTop: '3px solid var(--accent-primary)', borderLeft: '3px solid var(--accent-primary)', borderRadius: '8px 0 0 0' }}></div>
+                            <div className="hidden-mobile" style={{ position: 'absolute', bottom: '-10px', right: '-10px', width: '40px', height: '40px', borderBottom: '3px solid var(--accent-secondary)', borderRight: '3px solid var(--accent-secondary)', borderRadius: '0 0 8px 0' }}></div>
 
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--text-main)' }}>Turning Complex Tech Into Business Results</h3>
                             <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '1.5rem' }}>

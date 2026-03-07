@@ -6,6 +6,19 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 20) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const navLinks = [
         { name: 'Home', id: 'home' },
         { name: 'About', id: 'about' },
@@ -22,7 +35,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
                 position: 'fixed', width: '100%', zIndex: 50, top: 0,
                 transition: 'all 0.3s ease',
                 padding: scrolled ? '1rem 0' : '1.5rem 0',
-                backgroundColor: scrolled ? 'var(--glass-bg)' : 'transparent',
+                backgroundColor: scrolled ? 'rgba(10, 10, 12, 0.95)' : 'transparent',
                 backdropFilter: scrolled ? 'blur(12px)' : 'none',
                 borderBottom: scrolled ? '1px solid var(--glass-border)' : 'none'
             }}

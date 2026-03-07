@@ -61,9 +61,8 @@ const StatCard = ({ icon, value, suffix, prefix, label, delay, color, descriptio
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay }}
-            className="glass glow-hover"
+            className="glass glow-hover p-responsive"
             style={{
-                padding: '2.5rem 2rem',
                 borderRadius: '24px',
                 textAlign: 'center',
                 position: 'relative',

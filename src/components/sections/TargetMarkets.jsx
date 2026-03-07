@@ -58,9 +58,8 @@ const TargetMarkets = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: idx * 0.15 }}
-                            className="glass glow-hover"
+                            className="glass glow-hover p-responsive"
                             style={{
-                                padding: '2rem 1.5rem',
                                 borderRadius: '16px',
                                 textAlign: 'center',
                                 display: 'flex',
