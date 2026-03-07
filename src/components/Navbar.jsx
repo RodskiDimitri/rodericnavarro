@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Cpu } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ activeSection, setActiveSection }) => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -15,42 +15,17 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { name: 'About', href: '#about' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Experience', href: '#experience' },
-        { name: 'Clients', href: '#markets' },
-        { name: 'Contact', href: '#contact' }
+        { name: 'Home', id: 'home' },
+        { name: 'About', id: 'about' },
+        { name: 'Skills', id: 'skills' },
+        { name: 'Experience', id: 'experience' },
+        { name: 'Clients', id: 'markets' },
+        { name: 'Contact', id: 'contact' }
     ];
-
-    const [activeSection, setActiveSection] = useState('');
-
-    useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                // Determine which section is currently mostly visible
-                if (entry.isIntersecting) {
-                    setActiveSection(entry.target.id);
-                }
-            });
-        }, { threshold: 0.2, rootMargin: "-100px 0px -100px 0px" });
-
-        navLinks.forEach((link) => {
-            const id = link.href.substring(1);
-            const element = document.getElementById(id);
-            if (element) observer.observe(element);
-        });
-
-        // Setup hero intersection specifically because it's not in the navbar links but it's the top
-        const heroElement = document.getElementById('home');
-        if (heroElement) observer.observe(heroElement);
-        // If we intersect hero, we can set activeSection to empty string so nothing is highlighted.
-
-        return () => observer.disconnect();
-    }, []);
 
     return (
         <nav
-            className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'glass py-3' : 'py-5 bg-transparent'
+            className={`mobile-only fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'glass py-3' : 'py-5 bg-transparent'
                 }`}
             style={{
                 position: 'fixed', width: '100%', zIndex: 50, top: 0,
@@ -62,37 +37,43 @@ const Navbar = () => {
             }}
         >
             <div className="container flex justify-between items-center" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <a href="#" className="flex items-center gap-2" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.5rem', fontWeight: 700, fontFamily: 'var(--font-heading)' }}>
+                <button onClick={() => setActiveSection('home')} className="flex items-center gap-2 font-heading" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.5rem', fontWeight: 700, fontFamily: 'var(--font-heading)', background: 'none', border: 'none', cursor: 'pointer', color: 'inherit' }}>
                     <Cpu color="var(--accent-primary)" size={28} />
                     <span>RODERIC<span className="text-gradient">.AI</span></span>
-                </a>
+                </button>
 
-                {/* Desktop Nav */}
+                {/* Desktop Nav (Should technically be hidden if we strictly use Sidebar, but kept for safe fallback) */}
                 <div className="hidden-mobile" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
                     {navLinks.map((link) => {
-                        const isActive = activeSection === link.href.substring(1);
+                        const isActive = activeSection === link.id;
                         return (
-                            <a
+                            <button
                                 key={link.name}
-                                href={link.href}
+                                onClick={() => setActiveSection(link.id)}
                                 style={{
                                     fontSize: '0.9rem',
                                     fontWeight: 500,
                                     color: isActive ? 'var(--accent-primary)' : 'var(--text-muted)',
                                     borderBottom: isActive ? '2px solid var(--accent-primary)' : '2px solid transparent',
                                     paddingBottom: '4px',
-                                    transition: 'all 0.2s'
+                                    transition: 'all 0.2s',
+                                    background: 'none',
+                                    borderTop: 'none',
+                                    borderLeft: 'none',
+                                    borderRight: 'none',
+                                    cursor: 'pointer',
+                                    fontFamily: 'inherit'
                                 }}
                                 onMouseOver={(e) => { if (!isActive) e.target.style.color = 'var(--text-main)'; }}
                                 onMouseOut={(e) => { if (!isActive) e.target.style.color = 'var(--text-muted)'; }}
                             >
                                 {link.name}
-                            </a>
+                            </button>
                         );
                     })}
-                    <a href="#contact" className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0.5rem 1.25rem', borderRadius: '99px', border: '1px solid var(--border-color)', fontSize: '0.9rem', transition: 'all 0.3s' }}>
+                    <button onClick={() => setActiveSection('contact')} className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0.5rem 1.25rem', borderRadius: '99px', border: '1px solid var(--border-color)', fontSize: '0.9rem', transition: 'all 0.3s', background: 'transparent', color: 'var(--text-main)', cursor: 'pointer' }}>
                         Let's Talk
-                    </a>
+                    </button>
                 </div>
 
                 {/* Mobile Toggle */}
@@ -115,23 +96,31 @@ const Navbar = () => {
                         style={{ position: 'absolute', top: '100%', left: 0, width: '100%', background: 'var(--bg-secondary)', padding: '1rem', borderBottom: '1px solid var(--glass-border)', display: 'flex', flexDirection: 'column', gap: '1rem' }}
                     >
                         {navLinks.map((link) => {
-                            const isActive = activeSection === link.href.substring(1);
+                            const isActive = activeSection === link.id;
                             return (
-                                <a
+                                <button
                                     key={link.name}
-                                    href={link.href}
-                                    onClick={() => setMobileMenuOpen(false)}
+                                    onClick={() => {
+                                        setActiveSection(link.id);
+                                        setMobileMenuOpen(false);
+                                    }}
                                     style={{
                                         padding: '0.75rem',
                                         fontSize: '1.1rem',
                                         fontWeight: 500,
                                         borderBottom: '1px solid var(--border-color)',
                                         color: isActive ? 'var(--accent-primary)' : 'var(--text-main)',
-                                        background: isActive ? 'rgba(0, 240, 255, 0.05)' : 'transparent'
+                                        background: isActive ? 'rgba(0, 240, 255, 0.05)' : 'transparent',
+                                        textAlign: 'left',
+                                        borderTop: 'none',
+                                        borderLeft: 'none',
+                                        borderRight: 'none',
+                                        cursor: 'pointer',
+                                        fontFamily: 'inherit'
                                     }}
                                 >
                                     {link.name}
-                                </a>
+                                </button>
                             );
                         })}
                     </motion.div>

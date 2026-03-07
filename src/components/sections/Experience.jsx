@@ -62,9 +62,9 @@ const Experience = () => {
                     </p>
                 </motion.div>
 
-                <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative' }}>
-                    {/* Vertical Line */}
-                    <div style={{ position: 'absolute', left: '24px', top: '0', bottom: '0', width: '2px', background: 'var(--glass-border)' }}></div>
+                <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative', paddingLeft: '50px' }}>
+                    {/* Vertical Connecting Line */}
+                    <div style={{ position: 'absolute', left: '19px', top: '24px', bottom: '0', width: '2px', background: 'linear-gradient(to bottom, var(--accent-primary), transparent)' }}></div>
 
                     {experiences.map((exp, idx) => (
                         <motion.div
@@ -76,14 +76,19 @@ const Experience = () => {
                             style={{ position: 'relative', display: 'flex', gap: '2rem', marginBottom: '3rem' }}
                         >
                             {/* Timeline dot */}
-                            <div style={{ width: '50px', flexShrink: 0, display: 'flex', justifyContent: 'center' }}>
-                                <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: 'var(--bg-main)', border: '4px solid var(--accent-primary)', position: 'relative', zIndex: 2, marginTop: '8px' }}></div>
+                            <div style={{ position: 'absolute', left: '-50px', width: '40px', display: 'flex', justifyContent: 'center' }}>
+                                <motion.div
+                                    initial={{ scale: 0 }}
+                                    whileInView={{ scale: 1 }}
+                                    transition={{ duration: 0.4, delay: idx * 0.1 + 0.3 }}
+                                    style={{ width: '16px', height: '16px', borderRadius: '50%', background: 'var(--accent-primary)', border: '4px solid var(--bg-main)', position: 'relative', zIndex: 2, marginTop: '24px', boxShadow: '0 0 10px var(--accent-glow)' }}
+                                />
                             </div>
 
                             {/* Content Card */}
-                            <div className="glass glow-hover" style={{ flex: 1, padding: '2rem', borderRadius: '16px', position: 'relative' }}>
-                                {/* Connecting Line */}
-                                <div style={{ position: 'absolute', top: '24px', left: '-20px', width: '20px', height: '2px', background: 'var(--glass-border)' }}></div>
+                            <div className="glass glow-hover" style={{ flex: 1, padding: '2rem', borderRadius: '16px', position: 'relative', overflow: 'hidden' }}>
+                                {/* Decorative Gradient Blob */}
+                                <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '150px', height: '150px', background: 'var(--accent-primary)', opacity: 0.05, filter: 'blur(40px)', borderRadius: '50%' }}></div>
 
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
