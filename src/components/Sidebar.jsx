@@ -1,5 +1,6 @@
 import React from 'react';
-import { Cpu, Linkedin, Mail } from 'lucide-react';
+import { Linkedin, Mail } from 'lucide-react';
+import ParticleNetwork from './ui/ParticleNetwork';
 
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const navLinks = [
@@ -9,19 +10,33 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
     { name: 'Clients', id: 'clients' },
     { name: 'Contact', id: 'contact' }
   ];
-
   return (
     <aside className="sidebar desktop-only">
-      <div className="sidebar-content glass">
+      <div className="sidebar-content">
         {/* Profile Card */}
         <div className="profile-section">
           <div className="avatar-wrapper">
-            <div className="avatar-placeholder">
-              <Cpu color="var(--accent-primary)" size={48} />
+            {/* Particle network background */}
+            <div className="sidebar-particles">
+              <ParticleNetwork
+                particleColor="rgba(0, 240, 255, 0.4)"
+                lineColor="rgba(0, 240, 255, 0.2)"
+                particleCount={15}
+                connectionDistance={60}
+                speed={0.3}
+              />
+            </div>
+            {/* Actual profile photo */}
+            <div className="sidebar-photo-wrapper">
+              <img
+                src={`${import.meta.env.BASE_URL}profile.png`}
+                alt="Roderic Navarro"
+                className="sidebar-photo"
+              />
             </div>
           </div>
           <h2>Roderic Navarro</h2>
-          <p className="title">AI Technology Consultant | Data Engineer</p>
+          <p className="title">Strategic Technology Leader & AI Consultant</p>
 
           <div className="social-links">
             <a href="https://linkedin.com/in/rodericnavarro" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /></a>
@@ -68,23 +83,21 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
         .sidebar-content {
           width: 100%;
-          border-radius: 24px;
-          padding: 2.5rem 2rem;
+          padding: 1.5rem 2rem;
           display: flex;
           flex-direction: column;
           height: 100%;
-          border: 1px solid var(--glass-border);
         }
 
         .profile-section {
           text-align: center;
-          margin-bottom: 2.5rem;
+          margin-bottom: 1rem;
         }
 
         .avatar-wrapper {
           width: 120px;
           height: 120px;
-          margin: 0 auto 1.5rem;
+          margin: 0 auto 0.75rem;
           border-radius: 50%;
           background: var(--bg-secondary);
           display: flex;
@@ -92,6 +105,37 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
           justify-content: center;
           border: 2px solid var(--accent-primary);
           box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* Particle canvas clipped inside circle */
+        .sidebar-particles {
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          border-radius: 50%;
+          overflow: hidden;
+          opacity: 0.8;
+          z-index: 0;
+        }
+
+        /* Profile photo on top */
+        .sidebar-photo-wrapper {
+          width: 106px;
+          height: 106px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 3px solid var(--bg-secondary);
+          box-shadow: 0 4px 16px rgba(0, 240, 255, 0.2);
+          position: relative;
+          z-index: 10;
+        }
+
+        .sidebar-photo {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .profile-section h2 {
@@ -102,7 +146,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
         .profile-section .title {
           color: var(--text-muted);
           font-size: 0.9rem;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem;
         }
 
         .social-links {
@@ -157,7 +201,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
         }
 
         .sidebar-footer {
-          margin-top: 2rem;
+          margin-top: 1rem;
         }
           
         .w-full {
@@ -176,7 +220,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
           }
         }
       `}</style>
-    </aside>
+    </aside >
   );
 };
 
