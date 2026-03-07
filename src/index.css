@@ -104,7 +104,7 @@ a {
 /* New Layout Classes */
 .layout-wrapper {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   padding: 2rem;
   gap: 2rem;
   max-width: 1400px;
@@ -114,27 +114,36 @@ a {
 
 /* Vertical divider between sidebar and main card on desktop */
 @media (min-width: 1025px) {
+  body {
+    overflow: hidden;
+  }
+
   .layout-wrapper::before {
     content: '';
     position: absolute;
-    top: 4rem; /* Give it some top padding */
-    bottom: 4rem; /* Give it some bottom padding */
-    left: calc(2rem + 320px + 1rem); /* padding + sidebar width + half the gap */
+    top: 4rem;
+    /* Give it some top padding */
+    bottom: 4rem;
+    /* Give it some bottom padding */
+    left: calc(2rem + 320px + 1rem);
+    /* padding + sidebar width + half the gap */
     width: 1px;
-    background: linear-gradient(to bottom, 
-      rgba(255,255,255,0) 0%, 
-      var(--border-color) 20%, 
-      var(--border-color) 80%, 
-      rgba(255,255,255,0) 100%
-    );
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        var(--border-color) 20%,
+        var(--border-color) 80%,
+        rgba(255, 255, 255, 0) 100%);
   }
 }
 
 .main-card {
   flex: 1;
-  background: transparent; /* Removed background */
-  border: none; /* Removed border */
-  box-shadow: none; /* Removed box-shadow */
+  background: transparent;
+  /* Removed background */
+  border: none;
+  /* Removed border */
+  box-shadow: none;
+  /* Removed box-shadow */
   position: relative;
   /* Make it scrollable internally if we want, or just let the body scroll. 
      For the layout, we'll let the window scroll but the card visually contains it. */

@@ -5,13 +5,12 @@ import ParticleNetwork from '../ui/ParticleNetwork';
 
 const Hero = ({ setActiveSection }) => {
     return (
-        <section id="home" className="section" style={{
-            minHeight: '100vh',
+        <section id="home" style={{
+            height: '100%',
             display: 'flex',
             alignItems: 'center',
             position: 'relative',
-            overflow: 'hidden',
-            paddingTop: '100px'
+            overflow: 'hidden'
         }}>
             {/* Background animated elements */}
             <div style={{ position: 'absolute', top: '20%', left: '10%', width: '300px', height: '300px', background: 'var(--accent-primary)', filter: 'blur(150px)', opacity: 0.15, borderRadius: '50%' }}></div>
