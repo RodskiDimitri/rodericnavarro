@@ -54,9 +54,9 @@ const Experience = () => {
                     transition={{ duration: 0.6 }}
                     style={{ textAlign: 'center', marginBottom: '2rem' }}
                 >
-                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>
                         Professional <span className="text-gradient">Journey</span>
-                    </h3>
+                    </h2>
                     <p style={{ color: 'var(--text-muted)', maxWidth: '500px', margin: '0 auto', fontSize: '0.9rem' }}>
                         Driving innovation and delivering quantifiable business impact.
                     </p>
@@ -96,6 +96,7 @@ const Experience = () => {
                                             <img
                                                 src={exp.logo}
                                                 alt={`${exp.company} logo`}
+                                                loading="lazy"
                                                 style={{
                                                     width: '48px',
                                                     height: '48px',

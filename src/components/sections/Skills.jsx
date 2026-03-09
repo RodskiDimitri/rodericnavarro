@@ -22,6 +22,7 @@ const BrandIcon = ({ name, color, Fallback }) => {
             src={`https://cdn.simpleicons.org/${name}/${hexColor}`}
             alt={`${name} icon`}
             style={{ width: '16px', height: '16px', objectFit: 'contain' }}
+            loading="lazy"
             onError={() => setError(true)}
         />
     );

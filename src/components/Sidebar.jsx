@@ -33,6 +33,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 src={`${import.meta.env.BASE_URL}profile.png`}
                 alt="Roderic Navarro"
                 className="sidebar-photo"
+                loading="lazy"
               />
             </div>
           </div>
