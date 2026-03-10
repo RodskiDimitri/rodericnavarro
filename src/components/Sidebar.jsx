@@ -1,15 +1,17 @@
 import React from 'react';
 import { Linkedin, Mail } from 'lucide-react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import ParticleNetwork from './ui/ParticleNetwork';
 import { siteConfig } from '../data/config';
 
-const Sidebar = ({ activeSection, setActiveSection }) => {
+const Sidebar = () => {
+  const navigate = useNavigate();
   const navLinks = [
-    { name: 'Home', id: 'home' },
-    { name: 'About', id: 'about' },
-    { name: 'Resume', id: 'resume' },
-    { name: 'Clients', id: 'clients' },
-    { name: 'Contact', id: 'contact' }
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Resume', path: '/resume' },
+    { name: 'Clients', path: '/clients' },
+    { name: 'Contact', path: '/contact' }
   ];
   return (
     <aside className="sidebar desktop-only">
@@ -42,7 +44,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
           <div className="social-links">
             <a href={siteConfig.social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /></a>
-            <button onClick={() => setActiveSection('contact')} aria-label="Email" style={{ padding: 0, border: 'none', background: 'none', display: 'flex' }}>
+            <button onClick={() => navigate('/contact')} aria-label="Email" style={{ padding: 0, border: 'none', background: 'none', display: 'flex', cursor: 'pointer' }}>
               <div className="social-btn"><Mail size={20} /></div>
             </button>
           </div>
@@ -51,23 +53,22 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
         {/* Navigation */}
         <nav className="sidebar-nav">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
             return (
-              <button
+              <NavLink
                 key={link.name}
-                onClick={() => setActiveSection(link.id)}
-                className={`nav-item ${isActive ? 'active' : ''}`}
-                style={{ textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: '1rem' }}
+                to={link.path}
+                className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+                style={{ textAlign: 'left', background: 'none', border: 'none', fontFamily: 'inherit', fontSize: '1rem', textDecoration: 'none', display: 'block' }}
               >
                 {link.name}
-              </button>
+              </NavLink>
             );
           })}
         </nav>
 
         {/* CTA */}
         <div className="sidebar-footer">
-          <button onClick={() => setActiveSection('contact')} className="btn btn-primary w-full">Let's Talk</button>
+          <button onClick={() => navigate('/contact')} className="btn btn-primary w-full">Let's Talk</button>
           <div style={{ marginTop: '1.5rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.75rem', opacity: 0.6, lineHeight: 1.5 }}>
             &copy; {new Date().getFullYear()} {siteConfig.personal.fullName}.<br />All rights reserved.
           </div>

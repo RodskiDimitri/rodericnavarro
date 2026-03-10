@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Cpu } from 'lucide-react';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 
-const Navbar = ({ activeSection, setActiveSection }) => {
+const Navbar = () => {
+    const navigate = useNavigate();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -20,11 +22,11 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     }, []);
 
     const navLinks = [
-        { name: 'Home', id: 'home' },
-        { name: 'About', id: 'about' },
-        { name: 'Resume', id: 'resume' },
-        { name: 'Clients', id: 'clients' },
-        { name: 'Contact', id: 'contact' }
+        { name: 'Home', path: '/' },
+        { name: 'About', path: '/about' },
+        { name: 'Resume', path: '/resume' },
+        { name: 'Clients', path: '/clients' },
+        { name: 'Contact', path: '/contact' }
     ];
 
     return (
@@ -41,20 +43,19 @@ const Navbar = ({ activeSection, setActiveSection }) => {
             }}
         >
             <div className="container flex justify-between items-center" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <button onClick={() => setActiveSection('home')} className="flex items-center gap-2 font-heading" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.5rem', fontWeight: 700, fontFamily: 'var(--font-heading)', background: 'none', border: 'none', cursor: 'pointer', color: 'inherit' }}>
+                <Link to="/" className="flex items-center gap-2 font-heading" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.5rem', fontWeight: 700, fontFamily: 'var(--font-heading)', background: 'none', border: 'none', cursor: 'pointer', color: 'inherit', textDecoration: 'none' }}>
                     <Cpu color="var(--accent-primary)" size={28} />
                     <span>RODERIC<span className="text-gradient">.AI</span></span>
-                </button>
+                </Link>
 
                 {/* Desktop Nav (Should technically be hidden if we strictly use Sidebar, but kept for safe fallback) */}
                 <div className="hidden-mobile" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
                     {navLinks.map((link) => {
-                        const isActive = activeSection === link.id;
                         return (
-                            <button
+                            <NavLink
                                 key={link.name}
-                                onClick={() => setActiveSection(link.id)}
-                                style={{
+                                to={link.path}
+                                style={({ isActive }) => ({
                                     fontSize: '0.9rem',
                                     fontWeight: 500,
                                     color: isActive ? 'var(--accent-primary)' : 'var(--text-muted)',
@@ -66,16 +67,15 @@ const Navbar = ({ activeSection, setActiveSection }) => {
                                     borderLeft: 'none',
                                     borderRight: 'none',
                                     cursor: 'pointer',
-                                    fontFamily: 'inherit'
-                                }}
-                                onMouseOver={(e) => { if (!isActive) e.target.style.color = 'var(--text-main)'; }}
-                                onMouseOut={(e) => { if (!isActive) e.target.style.color = 'var(--text-muted)'; }}
+                                    fontFamily: 'inherit',
+                                    textDecoration: 'none'
+                                })}
                             >
                                 {link.name}
-                            </button>
+                            </NavLink>
                         );
                     })}
-                    <button onClick={() => setActiveSection('contact')} className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0.5rem 1.25rem', borderRadius: '99px', border: '1px solid var(--border-color)', fontSize: '0.9rem', transition: 'all 0.3s', background: 'transparent', color: 'var(--text-main)', cursor: 'pointer' }}>
+                    <button onClick={() => navigate('/contact')} className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0.5rem 1.25rem', borderRadius: '99px', border: '1px solid var(--border-color)', fontSize: '0.9rem', transition: 'all 0.3s', background: 'transparent', color: 'var(--text-main)', cursor: 'pointer' }}>
                         Let's Talk
                     </button>
                 </div>
@@ -100,15 +100,12 @@ const Navbar = ({ activeSection, setActiveSection }) => {
                         style={{ position: 'absolute', top: '100%', left: 0, width: '100%', background: 'var(--bg-secondary)', padding: '1rem', borderBottom: '1px solid var(--glass-border)', display: 'flex', flexDirection: 'column', gap: '1rem' }}
                     >
                         {navLinks.map((link) => {
-                            const isActive = activeSection === link.id;
                             return (
-                                <button
+                                <NavLink
                                     key={link.name}
-                                    onClick={() => {
-                                        setActiveSection(link.id);
-                                        setMobileMenuOpen(false);
-                                    }}
-                                    style={{
+                                    to={link.path}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    style={({ isActive }) => ({
                                         padding: '0.75rem',
                                         fontSize: '1.1rem',
                                         fontWeight: 500,
@@ -120,11 +117,13 @@ const Navbar = ({ activeSection, setActiveSection }) => {
                                         borderLeft: 'none',
                                         borderRight: 'none',
                                         cursor: 'pointer',
-                                        fontFamily: 'inherit'
-                                    }}
+                                        fontFamily: 'inherit',
+                                        textDecoration: 'none',
+                                        display: 'block'
+                                    })}
                                 >
                                     {link.name}
-                                </button>
+                                </NavLink>
                             );
                         })}
                     </motion.div>

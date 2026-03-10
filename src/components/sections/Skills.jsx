@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { skillCategories as categories } from '../../data/content';
 import {
     Bot, Network, Server, Wrench,
     Terminal, Wifi, Shield, HardDrive,
@@ -22,67 +23,12 @@ const BrandIcon = ({ name, color, Fallback }) => {
             src={`https://cdn.simpleicons.org/${name}/${hexColor}`}
             alt={`${name} icon`}
             style={{ width: '16px', height: '16px', objectFit: 'contain' }}
-            loading="lazy"
             onError={() => setError(true)}
         />
     );
 };
 
 const Skills = () => {
-    const categories = [
-        {
-            title: "AI & Language Models",
-            icon: <Bot size={28} />,
-            color: "#3b82f6",
-            bgColor: "rgba(59, 130, 246, 0.1)",
-            skills: [
-                { name: "Claude Pro", icon: <BrandIcon name="anthropic" color="#D97757" Fallback={Brain} />, brandColor: "#D97757" },
-                { name: "ChatGPT", icon: <MessageSquare size={16} color="#10A37F" />, brandColor: "#10A37F" },
-                { name: "Mistral AI", icon: <BrandIcon name="mistralai" color="#F26522" Fallback={Wind} />, brandColor: "#F26522" },
-                { name: "Gemini AI", icon: <BrandIcon name="googlegemini" color="#8E75B2" Fallback={Sparkles} />, brandColor: "#8E75B2" },
-                { name: "Notebook LM", icon: <BrandIcon name="google" color="#4285F4" Fallback={BookOpen} />, brandColor: "#4285F4" },
-                { name: "Antigravity IDE", icon: <img src="https://antigravity.google/assets/image/antigravity-logo.png" alt="Antigravity IDE" style={{ width: '16px', height: '16px', objectFit: 'contain' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />, brandColor: "#4A90D9" },
-                { name: "Prompt Eng.", icon: <Terminal size={16} color="#A855F7" />, brandColor: "#A855F7" }
-            ]
-        },
-        {
-            title: "Networking & Infrastructure",
-            icon: <Network size={28} />,
-            color: "#8b5cf6",
-            bgColor: "rgba(139, 92, 246, 0.1)",
-            skills: [
-                { name: "Omada Systems", icon: <BrandIcon name="tplink" color="#46B2C8" Fallback={Wifi} />, brandColor: "#46B2C8" },
-                { name: "Commercial WiFi", icon: <Wifi size={16} color="#38BDF8" />, brandColor: "#38BDF8" },
-                { name: "Net Monetization", icon: <Shield size={16} color="#22C55E" />, brandColor: "#22C55E" },
-                { name: "System Optimization", icon: <HardDrive size={16} color="#F43F5E" />, brandColor: "#F43F5E" }
-            ]
-        },
-        {
-            title: "Admin & Productivity",
-            icon: <Server size={28} />,
-            color: "#ec4899",
-            bgColor: "rgba(236, 72, 153, 0.1)",
-            skills: [
-                { name: "Google Workspace", icon: <BrandIcon name="google" color="#4285F4" Fallback={Cloud} />, brandColor: "#4285F4" },
-                { name: "MS Office 2021", icon: <FileText size={16} color="#D83B01" />, brandColor: "#D83B01" },
-                { name: "Windows 11", icon: <Monitor size={16} color="#0078D4" />, brandColor: "#0078D4" },
-                { name: "Project Mgmt", icon: <CheckSquare size={16} color="#EAB308" />, brandColor: "#EAB308" }
-            ]
-        },
-        {
-            title: "Automation & Integration",
-            icon: <Wrench size={28} />,
-            color: "#10b981",
-            bgColor: "rgba(16, 185, 129, 0.1)",
-            skills: [
-                { name: "Zapier", icon: <BrandIcon name="zapier" color="#FF4A00" Fallback={Zap} />, brandColor: "#FF4A00" },
-                { name: "Custom Chatbots", icon: <MessageCircle size={16} color="#06B6D4" />, brandColor: "#06B6D4" },
-                { name: "App Script", icon: <BrandIcon name="googleappsscript" color="#4285F4" Fallback={Code} />, brandColor: "#4285F4" },
-                { name: "Workflows", icon: <Settings size={16} color="#94A3B8" />, brandColor: "#94A3B8" }
-            ]
-        }
-    ];
-
     const containerVariants = {
         hidden: { opacity: 0 },
         show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
@@ -246,7 +192,7 @@ const Skills = () => {
                                             e.currentTarget.style.transform = 'scale(1)';
                                         }}
                                     >
-                                        {skill.icon}
+                                        {skill.iconName ? <BrandIcon name={skill.iconName} color={skill.brandColor} Fallback={skill.fallback} /> : skill.customIcon}
                                         {skill.name}
                                     </motion.div>
                                 ))}

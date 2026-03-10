@@ -1,48 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { experiences } from '../../data/content';
 import poliannaLogo from '../../assets/polianna-logo.jpg';
 import firestartLogo from '../../assets/firestarter-logo.jpg';
 
 const Experience = () => {
-    const experiences = [
-        {
-            title: "AI Technology Consultant",
-            company: "Self-Employed",
-            period: "Dec 2024 - Present",
-            description: "Strategic AI implementation consulting for SMEs. Custom prompt engineering and chatbot development resulting in significant process optimization.",
-            highlights: [
-                "Automated and eliminated repetitive workflows for SME clients",
-                "Boosted client productivity by 35% within 30 days",
-                "Cut customer service response times from 2 hours to 48 minutes"
-            ]
-        },
-        {
-            title: "IT & Innovation Manager",
-            company: "Polianna, LLC",
-            logo: poliannaLogo,
-            period: "Jan 2020 - Jan 2024",
-            description: "Led technology innovation, IT infrastructure management, and strategic planning. Progressed from System Adviser & Administrator to IT & Innovation Manager, driving transformation across the organization.",
-            highlights: [
-                "Delivered $20K+ annual cost savings via vendor negotiations",
-                "Redesigned infrastructure cutting monthly downtime from 8% to <2%",
-                "Increased operational efficiency across 4 departments by 30%",
-                "Maintained 99.8% uptime with zero security breaches over 3 years",
-                "Reduced security incidents by 85% with new IAM deployments"
-            ]
-        },
-        {
-            title: "IT Administrator",
-            company: "Firestarter Group",
-            logo: firestartLogo,
-            period: "Mar 2016 - Dec 2019",
-            description: "Administered complete IT infrastructure including system maintenance, optimization protocols, and end-to-end technical support.",
-            highlights: [
-                "Managed full IT infrastructure for the organization",
-                "Implemented system maintenance and optimization protocols",
-                "Provided comprehensive technical support and troubleshooting"
-            ]
-        }
-    ];
+    // Map the string identifiers from content.jsx to actual imported assets
+    const getLogo = (logoName) => {
+        if (logoName === 'poliannaLogo') return poliannaLogo;
+        if (logoName === 'firestartLogo') return firestartLogo;
+        return null;
+    };
 
     return (
         <section id="experience" style={{ position: 'relative' }}>
@@ -94,7 +62,7 @@ const Experience = () => {
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                         {exp.logo && (
                                             <img
-                                                src={exp.logo}
+                                                src={getLogo(exp.logo)}
                                                 alt={`${exp.company} logo`}
                                                 loading="lazy"
                                                 style={{

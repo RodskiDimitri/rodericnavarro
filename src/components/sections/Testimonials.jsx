@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
+import { testimonialsData as testimonials } from '../../data/content';
 
 const TestimonialCard = ({ quote, name, role, industry, rating, delay, accentColor }) => {
     return (
@@ -99,32 +100,6 @@ const TestimonialCard = ({ quote, name, role, industry, rating, delay, accentCol
 };
 
 const Testimonials = () => {
-    const testimonials = [
-        {
-            quote: "Roderic cut our customer service response time by over 60% in the first month. We didn't think that kind of improvement was possible without hiring more staff.",
-            name: "J. Reyes",
-            role: "Operations Director",
-            industry: "Healthcare SME",
-            rating: 5,
-            accentColor: "var(--accent-primary)"
-        },
-        {
-            quote: "His approach to AI integration was practical, not theoretical. Within two weeks, he automated workflows that used to take my team hours every day.",
-            name: "M. Santos",
-            role: "CEO",
-            industry: "E-Commerce Startup",
-            rating: 5,
-            accentColor: "var(--accent-secondary)"
-        },
-        {
-            quote: "What impressed me most was how he explained complex technology in terms our entire leadership team could understand. The ROI was clear from day one.",
-            name: "A. Torres",
-            role: "Managing Partner",
-            industry: "Professional Services",
-            rating: 5,
-            accentColor: "#00ff88"
-        }
-    ];
 
     return (
         <section id="testimonials" style={{

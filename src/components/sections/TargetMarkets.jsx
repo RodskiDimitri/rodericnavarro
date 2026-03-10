@@ -1,31 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Landmark, Rocket } from 'lucide-react';
+import { targetMarkets as markets } from '../../data/content';
 
 const TargetMarkets = () => {
-    const markets = [
-        {
-            title: "SMEs",
-            icon: <Building2 size={32} />,
-            desc: "Technology adoption consulting, specific process optimization, and seamless AI integration to eliminate repetitive workflows and maximize revenue.",
-            example: "",
-            color: "var(--accent-primary)"
-        },
-        {
-            title: "Startups",
-            icon: <Rocket size={32} />,
-            desc: "Robust infrastructure setup, scalable growth-oriented AI solutions, and strategic technology planning for rapid acceleration.",
-            example: "",
-            color: "var(--accent-secondary)"
-        },
-        {
-            title: "Government Agencies",
-            icon: <Landmark size={32} />,
-            desc: "Compliance-focused modernization and process consulting, ensuring secure and highly reliable system architectures.",
-            example: "",
-            color: "#00ff88"
-        }
-    ];
 
     return (
         <section id="markets" style={{ position: 'relative', overflow: 'hidden', padding: '2rem 0' }}>

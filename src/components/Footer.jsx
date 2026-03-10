@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { Linkedin, Mail, ArrowUp } from 'lucide-react';
 import { siteConfig } from '../data/config';
 
 const Footer = () => {

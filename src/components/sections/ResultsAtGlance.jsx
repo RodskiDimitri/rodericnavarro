@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, Zap, DollarSign, Clock, Shield } from 'lucide-react';
+import { resultsStats as stats } from '../../data/content';
 
 const useCountUp = (end, duration = 2000, startCounting = false) => {
     const [count, setCount] = useState(0);
@@ -144,44 +145,6 @@ const StatCard = ({ icon, value, suffix, prefix, label, delay, color, descriptio
 };
 
 const ResultsAtGlance = () => {
-    const stats = [
-        {
-            icon: <Zap size={26} />,
-            value: 15,
-            suffix: '+',
-            prefix: '',
-            label: 'Hours Saved Weekly per Client',
-            description: 'Directed the implementation of AI solutions for SME clients, fully automating manual workflows and eliminating repetitive tasks.',
-            color: 'var(--accent-primary)'
-        },
-        {
-            icon: <TrendingUp size={26} />,
-            value: 35,
-            suffix: '%',
-            prefix: '',
-            label: 'Client Productivity Boost',
-            description: 'Achieved in just 30 days by leading the integration of efficiency strategies and driving team adoption of new tools.',
-            color: 'var(--accent-secondary)'
-        },
-        {
-            icon: <DollarSign size={26} />,
-            value: 50,
-            suffix: 'K+',
-            prefix: '$',
-            label: 'Annual Savings Generated',
-            description: 'Delivered bottom-line impact through strategic vendor negotiations, contract management, and process optimization.',
-            color: '#00ff88'
-        },
-        {
-            icon: <Shield size={26} />,
-            value: 85,
-            suffix: '%',
-            prefix: '',
-            label: 'Drop in Security Incidents',
-            description: 'Managed the rollout of comprehensive identity management systems and security protocols across 100+ user environments.',
-            color: '#ff007f'
-        }
-    ];
 
     return (
         <section id="results" className="section" style={{
