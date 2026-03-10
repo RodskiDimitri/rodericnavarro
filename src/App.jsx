@@ -1,23 +1,11 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
+import PageTransition from './components/PageTransition'; // Import our new dynamic transition
 import { siteConfig } from './data/config';
-
-// Define the custom transition animation (Glass Morph)
-const pageVariants = {
-  initial: { opacity: 0, scale: 0.95, y: 20 },
-  in: { opacity: 1, scale: 1, y: 0 },
-  out: { opacity: 0, scale: 0.95, y: -20 }
-};
-
-const pageTransition = {
-  type: "spring",
-  stiffness: 260,
-  damping: 20,
-};
 
 function App() {
   const location = useLocation();
@@ -44,17 +32,9 @@ function App() {
         <div className="main-card" style={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
           <main style={{ flex: 1, position: 'relative' }}>
             <AnimatePresence mode="wait">
-              <motion.div
-                key={location.pathname} // changing the key triggers the animation
-                initial="initial"
-                animate="in"
-                exit="out"
-                variants={pageVariants}
-                transition={pageTransition}
-                style={{ width: '100%', height: '100%' }}
-              >
+              <PageTransition pathname={location.pathname} key={location.pathname}>
                 <Outlet />
-              </motion.div>
+              </PageTransition>
             </AnimatePresence>
           </main>
           <div className="mobile-only">
