@@ -4,7 +4,7 @@ import ClientsPage from '../components/pages/ClientsPage';
 
 const Clients = () => {
     return (
-        <div style={{ minHeight: 'calc(100vh - 4rem)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+        <div style={{ height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
             <Helmet>
                 <title>Clients & Target Markets | Roderic Navarro</title>
                 <meta name="description" content="Discover the target markets I serve, including SMEs, Startups, and Government Agencies, and read testimonials from satisfied clients." />

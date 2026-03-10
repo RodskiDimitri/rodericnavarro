@@ -69,7 +69,7 @@ const Sidebar = () => {
         {/* CTA */}
         <div className="sidebar-footer">
           <button onClick={() => navigate('/contact')} className="btn btn-primary w-full">Let's Talk</button>
-          <div style={{ marginTop: '1.5rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.75rem', opacity: 0.6, lineHeight: 1.5 }}>
+          <div style={{ marginTop: '1.5rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.75rem', opacity: 0.45, lineHeight: 1.5 }}>
             &copy; {new Date().getFullYear()} {siteConfig.personal.fullName}.<br />All rights reserved.
           </div>
         </div>
@@ -78,6 +78,7 @@ const Sidebar = () => {
       <style>{`
         .sidebar {
           width: 320px;
+          flex-shrink: 0;
           height: calc(100vh - 4rem);
           position: sticky;
           top: 2rem;
@@ -86,7 +87,7 @@ const Sidebar = () => {
 
         .sidebar-content {
           width: 100%;
-          padding: 1.5rem 2rem;
+          padding: 2.5rem 2rem 1.5rem 2rem;
           display: flex;
           flex-direction: column;
           height: 100%;
@@ -94,13 +95,13 @@ const Sidebar = () => {
 
         .profile-section {
           text-align: center;
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
         }
 
         .avatar-wrapper {
-          width: 120px;
-          height: 120px;
-          margin: 0 auto 0.75rem;
+          width: 100px;
+          height: 100px;
+          margin: 0 auto 0.5rem;
           border-radius: 50%;
           background: var(--bg-secondary);
           display: flex;
@@ -125,8 +126,8 @@ const Sidebar = () => {
 
         /* Profile photo on top */
         .sidebar-photo-wrapper {
-          width: 106px;
-          height: 106px;
+          width: 86px;
+          height: 86px;
           border-radius: 50%;
           overflow: hidden;
           border: 3px solid var(--bg-secondary);
@@ -142,14 +143,14 @@ const Sidebar = () => {
         }
 
         .profile-section h2 {
-          font-size: 1.5rem;
-          margin-bottom: 0.5rem;
+          font-size: 1.25rem;
+          margin-bottom: 0.35rem;
         }
 
         .profile-section .title {
           color: var(--text-muted);
-          font-size: 0.9rem;
-          margin-bottom: 1rem;
+          font-size: 0.85rem;
+          margin-bottom: 0.75rem;
         }
 
         .social-links {
@@ -180,7 +181,7 @@ const Sidebar = () => {
         .sidebar-nav {
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.25rem;
           margin-bottom: auto;
         }
 
@@ -204,7 +205,7 @@ const Sidebar = () => {
         }
 
         .sidebar-footer {
-          margin-top: 1rem;
+          margin-top: 0.75rem;
         }
           
         .w-full {

@@ -38,13 +38,15 @@ html {
   background-color: var(--bg-main);
   color: var(--text-main);
   font-family: var(--font-body);
-  overflow-x: hidden;
+  overflow: hidden;
   width: 100%;
+  height: 100%;
 }
 
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   width: 100%;
+  height: 100%;
   -webkit-font-smoothing: antialiased;
   /* Updated Background */
   background: linear-gradient(135deg, var(--bg-main) 0%, #15151e 100%);
@@ -107,13 +109,12 @@ a {
 /* New Layout Classes */
 .layout-wrapper {
   display: flex;
-  min-height: 100vh;
-  padding: 2rem;
+  height: 100vh;
+  padding: 0 0 0 2rem;
+  /* Top 0, Right 0, Bottom 0, Left 2 - padding handled by children */
   gap: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /* Vertical divider between sidebar and main card on desktop */
@@ -139,14 +140,33 @@ a {
 .main-card {
   flex: 1;
   background: transparent;
-  /* Removed background */
-  border: none;
-  /* Removed border */
   box-shadow: none;
-  /* Removed box-shadow */
   position: relative;
-  /* Make it scrollable internally if we want, or just let the body scroll. 
-     For the layout, we'll let the window scroll but the card visually contains it. */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  /* Re-add bottom padding here so scrollbar goes to bottom */
+  min-width: 0;
+  /* Prevents flex child from overflowing parent */
+}
+
+/* Custom scrollbar for main-card */
+.main-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.main-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.main-card::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
 }
 
 @media (max-width: 1024px) {
@@ -160,6 +180,7 @@ a {
 
   .main-card {
     border-radius: 16px;
+    padding-right: 0;
   }
 }
 

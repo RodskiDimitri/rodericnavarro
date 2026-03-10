@@ -5,7 +5,7 @@ import ResultsAtGlance from '../components/sections/ResultsAtGlance';
 
 const About = () => {
     return (
-        <div style={{ minHeight: 'calc(100vh - 4rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <div style={{ height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
             <Helmet>
                 <title>About Roderic Navarro | AI Consultant</title>
                 <meta name="description" content="Learn about Roderic Navarro's 17+ years of experience in IT operations, strategy, and AI tech consulting." />
