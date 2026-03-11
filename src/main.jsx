@@ -6,11 +6,13 @@ import About from './pages/About'
 import Resume from './pages/Resume'
 import Clients from './pages/Clients'
 import Contact from './pages/Contact'
+import ErrorBoundary from './components/ErrorBoundary'
 
 export const routes = [
   {
     path: '/',
     element: <AppLayout />,
+    errorElement: <ErrorBoundary />,
     children: [
       { index: true, element: <Home /> },
       { path: 'about', element: <About /> },
