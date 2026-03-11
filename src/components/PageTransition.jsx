@@ -2,14 +2,14 @@ import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 // Base transition configuration — shared across all variants
-const OVERLAY_DURATION = 1.4; // Increased from 0.8
+const OVERLAY_DURATION = 2.0; // Increased from 1.4 for a more deliberate feel
 const OVERLAY_EASE = [0.22, 1, 0.36, 1];
 
 // Content fade variants (subtle fade & scale for the actual page content)
 const contentVariants = {
   initial: { opacity: 0, scale: 0.98 },
-  in: { opacity: 1, scale: 1, transition: { duration: 0.8, delay: 0.3, ease: OVERLAY_EASE } }, // Slower fade-in with longer delay
-  out: { opacity: 0, scale: 0.98, transition: { duration: 0.3 } },
+  in: { opacity: 1, scale: 1, transition: { duration: 1.2, delay: 0.6, ease: OVERLAY_EASE } }, // Slower fade-in with longer delay
+  out: { opacity: 0, scale: 0.98, transition: { duration: 0.4 } },
 };
 
 /**
@@ -59,8 +59,8 @@ function getOverlayConfig(pathname) {
               initial={{ x: '-100%', opacity: 0.8 }}
               animate={{ x: '100%', opacity: 0 }}
               transition={{
-                duration: 1.0,
-                delay: i * 0.1, // Staggered drop
+                duration: OVERLAY_DURATION, // Use unified duration
+                delay: i * 0.15, // Slightly more stagger
                 ease: OVERLAY_EASE,
               }}
               style={{
@@ -107,7 +107,7 @@ function getOverlayConfig(pathname) {
               key={i}
               initial={{ scaleY: 1, opacity: 0.6 }}
               animate={{ scaleY: 0, opacity: 0 }}
-              transition={{ duration: 1.0, delay: i * 0.15, ease: OVERLAY_EASE }}
+              transition={{ duration: OVERLAY_DURATION, delay: i * 0.2, ease: OVERLAY_EASE }}
               style={{
                 flex: 1,
                 height: '100%',
@@ -121,35 +121,28 @@ function getOverlayConfig(pathname) {
       );
 
     case '/contact':
-      // Contact: "3D Data Cube" - A rotating 3D cube that expands and dissolves
+      // Contact: "Zoom-In on Entry" - A central circular lens that zooms towards the viewer
       return (
-        <div
+        <motion.div
           key="contact-overlay"
+          initial={{ scale: 0.8, opacity: 0.7 }}
+          animate={{ scale: 3.5, opacity: 0 }}
+          transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
           style={{
             position: 'absolute',
-            inset: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            top: '50%',
+            left: '50%',
+            width: '100vw',
+            height: '100vw',
+            marginLeft: '-50vw',
+            marginTop: '-50vw',
+            borderRadius: '50%',
+            backgroundColor: 'var(--accent-primary)',
+            filter: 'blur(40px)', // Softer edge for a more "atmospheric" zoom
             pointerEvents: 'none',
             zIndex: 50,
-            perspective: '1000px', // Required for 3D effect
           }}
-        >
-          <motion.div
-            initial={{ rotateX: 45, rotateY: 45, scale: 0.5, opacity: 0.8 }}
-            animate={{ rotateX: 180, rotateY: 180, scale: 3, opacity: 0 }}
-            transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
-            style={{
-              width: '200px',
-              height: '200px',
-              backgroundColor: 'var(--accent-primary)',
-              boxShadow: '0 0 40px var(--accent-primary)',
-              transformStyle: 'preserve-3d',
-              borderRadius: '10px',
-            }}
-          />
-        </div>
+        />
       );
 
     default:
