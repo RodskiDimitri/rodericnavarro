@@ -55,6 +55,7 @@ read_docs3.py
 
 # Test / sync verification files
 test_github_sync.md
+search_preview.html
 
 # Leftover npm binary / package artifacts
 npm

@@ -6,7 +6,8 @@ export const siteConfig = {
         email: "rodericnavarro@yahoo.com",
         phone: "+63 927 023 7088",
         location: "Parañaque City, Metro Manila, Philippines",
-        shortLocation: "Parañaque City, Metro Manila"
+        shortLocation: "Parañaque City, Metro Manila",
+        resumeUrl: "https://drive.google.com/file/d/1-mxrsbG7iemZe5zizn2sF3u3MKBuhFUg/view?usp=sharing"
     },
     social: {
         linkedin: "https://linkedin.com/in/rodericnavarro",
