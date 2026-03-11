@@ -1,122 +1,182 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
-// Base transition configuration — shared across all line variants
-const LINE_DURATION = 0.8;
-const LINE_EASE = [0.25, 0.1, 0.25, 1];
+// Base transition configuration — shared across all variants
+const OVERLAY_DURATION = 0.8;
+const OVERLAY_EASE = [0.22, 1, 0.36, 1];
 
 // Content fade variants (subtle fade & scale for the actual page content)
 const contentVariants = {
   initial: { opacity: 0, scale: 0.98 },
-  in: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.15, ease: LINE_EASE } },
+  in: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.15, ease: OVERLAY_EASE } },
   out: { opacity: 0, scale: 0.98, transition: { duration: 0.3 } },
 };
 
 /**
- * Returns the framer-motion variants AND the inline style overrides
- * for the "signature line" overlay, based on the current route.
+ * Returns the framer-motion variants AND the inline JSX structure
+ * for the overlay, based on the current route.
  */
-function getLineConfig(pathname) {
+function getOverlayConfig(pathname) {
   // Normalize pathname: strip the base path prefix and trailing slash for clean matching
   const clean = pathname.replace(/^\/rodericnavarro\/?/, '/').replace(/\/$/, '') || '/';
 
   switch (clean) {
     case '/':
-      // Home: Horizontal line draws outward from center
-      return {
-        variants: {
-          initial: { scaleX: 0, opacity: 1 },
-          animate: { scaleX: 1, opacity: 0, transition: { duration: LINE_DURATION, ease: LINE_EASE } },
-        },
-        style: {
-          top: '50%',
-          left: 0,
-          width: '100%',
-          height: '2px',
-          transformOrigin: '50% 50%',
-        },
-      };
+      // Home: "Neural Pulse" - expanding radial glow
+      return (
+        <motion.div
+          key="home-overlay"
+          initial={{ scale: 0, opacity: 0.5 }}
+          animate={{ scale: 1.5, opacity: 0 }}
+          transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            width: '100vw',
+            height: '100vw',
+            marginLeft: '-50vw',
+            marginTop: '-50vw',
+            borderRadius: '50%',
+            backgroundColor: 'var(--accent-primary)',
+            filter: 'blur(100px)',
+            pointerEvents: 'none',
+            zIndex: 50,
+          }}
+        />
+      );
 
     case '/about':
-      // About: Vertical thin line draws top-to-bottom (Curtain)
-      return {
-        variants: {
-          initial: { scaleY: 0, opacity: 1 },
-          animate: { scaleY: 1, opacity: 0, transition: { duration: 1.0, ease: LINE_EASE } },
-        },
-        style: {
-          top: 0,
-          left: '50%',
-          width: '2px',
-          height: '100%',
-          transformOrigin: '50% 0%', // Grow from top
-        },
-      };
+      // About: "Glass Aperture" - horizontal split opens
+      return (
+        <div
+          key="about-overlay"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            pointerEvents: 'none',
+            zIndex: 50,
+            overflow: 'hidden',
+          }}
+        >
+          <motion.div
+            initial={{ top: '50%', opacity: 0.5 }}
+            animate={{ top: '-10%', opacity: 0 }}
+            transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              height: '1px',
+              backgroundColor: 'var(--accent-primary)',
+            }}
+          />
+          <motion.div
+            initial={{ top: '50%', opacity: 0.5 }}
+            animate={{ top: '110%', opacity: 0 }}
+            transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              height: '1px',
+              backgroundColor: 'var(--accent-primary)',
+            }}
+          />
+        </div>
+      );
 
     case '/resume':
-      // Resume: Horizontal line draws left-to-right (Timeline)
-      return {
-        variants: {
-          initial: { scaleX: 0, opacity: 1 },
-          animate: { scaleX: 1, opacity: 0, transition: { duration: LINE_DURATION, ease: LINE_EASE } },
-        },
-        style: {
-          top: '50%',
-          left: 0,
-          width: '100%',
-          height: '2px',
-          transformOrigin: '0% 50%', // Grow from left
-        },
-      };
+      // Resume: "Timeline Draw" - vertical line down the left
+      return (
+        <motion.div
+          key="resume-overlay"
+          initial={{ scaleY: 0, opacity: 0.5 }}
+          animate={{ scaleY: 1, opacity: 0 }}
+          transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '40px', // Roughly aligns with resume timeline padding
+            width: '2px',
+            height: '100%',
+            backgroundColor: 'var(--accent-primary)',
+            transformOrigin: 'top',
+            pointerEvents: 'none',
+            zIndex: 50,
+          }}
+        />
+      );
 
     case '/clients':
-      // Clients: Full-width line shrinks to center (converge)
-      return {
-        variants: {
-          initial: { scaleX: 1, opacity: 1 },
-          animate: { scaleX: 0, opacity: 0, transition: { duration: LINE_DURATION, ease: LINE_EASE } },
-        },
-        style: {
-          top: '50%',
-          left: 0,
-          width: '100%',
-          height: '2px',
-          transformOrigin: '50% 50%', // Shrink to center
-        },
-      };
+      // Clients: "Constellation Reveal" - three dots that fade
+      return (
+        <div
+          key="clients-overlay"
+          style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 50 }}
+        >
+          {[
+            { top: '20%', left: '30%' },
+            { top: '50%', left: '70%' },
+            { top: '80%', left: '40%' },
+          ].map((pos, i) => (
+            <motion.div
+              key={i}
+              initial={{ scale: 0, opacity: 0.6 }}
+              animate={{ scale: 1, opacity: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: OVERLAY_EASE }}
+              style={{
+                ...pos,
+                position: 'absolute',
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--accent-primary)',
+                boxShadow: '0 0 20px var(--accent-glow)',
+              }}
+            />
+          ))}
+        </div>
+      );
 
     case '/contact':
-      // Contact: Diagonal line sweeps across the content area
-      return {
-        variants: {
-          initial: { scaleX: 0, opacity: 1 },
-          animate: { scaleX: 1, opacity: 0, transition: { duration: LINE_DURATION, ease: LINE_EASE } },
-        },
-        style: {
-          top: '50%',
-          left: '-25%', // Offset to allow the rotated line to span the full area
-          width: '150%', // Wider than container so diagonal covers the area
-          height: '2px',
-          transformOrigin: '0% 50%', // Grow from left
-          transform: 'rotate(-30deg)', // Slight diagonal for elegance
-        },
-      };
+      // Contact: "Direct Link" - fast diagonal sweep
+      return (
+        <motion.div
+          key="contact-overlay"
+          initial={{ x: '-100%', skewX: -45, opacity: 0.6 }}
+          animate={{ x: '100%', skewX: -45, opacity: 0 }}
+          transition={{ duration: 0.6, ease: OVERLAY_EASE }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '200%',
+            height: '100%',
+            background: 'linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent)',
+            pointerEvents: 'none',
+            zIndex: 50,
+          }}
+        />
+      );
 
     default:
-      // Fallback: Same as Home
-      return {
-        variants: {
-          initial: { scaleX: 0, opacity: 1 },
-          animate: { scaleX: 1, opacity: 0, transition: { duration: LINE_DURATION, ease: LINE_EASE } },
-        },
-        style: {
-          top: '50%',
-          left: 0,
-          width: '100%',
-          height: '2px',
-          transformOrigin: '50% 50%',
-        },
-      };
+      // Fallback: simple fade
+      return (
+        <motion.div
+          key="default-overlay"
+          initial={{ opacity: 0.2 }}
+          animate={{ opacity: 0 }}
+          transition={{ duration: OVERLAY_DURATION }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundColor: 'var(--accent-primary)',
+            pointerEvents: 'none',
+            zIndex: 50,
+          }}
+        />
+      );
   }
 }
 
@@ -127,9 +187,9 @@ const prefersReducedMotion =
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export default function PageTransition({ children, pathname }) {
-  const lineConfig = useMemo(() => getLineConfig(pathname), [pathname]);
+  const overlay = useMemo(() => getOverlayConfig(pathname), [pathname]);
 
-  // If user prefers reduced motion, skip the line animation entirely
+  // If user prefers reduced motion, skip the overlay animation entirely
   // and use a simple, instant fade for content
   const reducedContentVariants = {
     initial: { opacity: 0 },
@@ -138,23 +198,9 @@ export default function PageTransition({ children, pathname }) {
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      {/* The "Signature Line" Overlay — pointer-events: none so it never blocks clicks */}
-      {!prefersReducedMotion && (
-        <motion.div
-          key={`${pathname}-line`}
-          initial="initial"
-          animate="animate"
-          variants={lineConfig.variants}
-          style={{
-            position: 'absolute',
-            ...lineConfig.style,
-            backgroundColor: 'var(--accent-primary)',
-            zIndex: 50,
-            pointerEvents: 'none',
-          }}
-        />
-      )}
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+      {/* The Dynamic Overlay */}
+      {!prefersReducedMotion && overlay}
 
       {/* The Actual Page Content */}
       <motion.div
@@ -170,3 +216,4 @@ export default function PageTransition({ children, pathname }) {
     </div>
   );
 }
+
