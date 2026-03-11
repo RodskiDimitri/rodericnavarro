@@ -2,13 +2,13 @@ import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 // Base transition configuration — shared across all variants
-const OVERLAY_DURATION = 0.8;
+const OVERLAY_DURATION = 1.4; // Increased from 0.8
 const OVERLAY_EASE = [0.22, 1, 0.36, 1];
 
 // Content fade variants (subtle fade & scale for the actual page content)
 const contentVariants = {
   initial: { opacity: 0, scale: 0.98 },
-  in: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.15, ease: OVERLAY_EASE } },
+  in: { opacity: 1, scale: 1, transition: { duration: 0.8, delay: 0.3, ease: OVERLAY_EASE } }, // Slower fade-in with longer delay
   out: { opacity: 0, scale: 0.98, transition: { duration: 0.3 } },
 };
 
@@ -47,61 +47,48 @@ function getOverlayConfig(pathname) {
       );
 
     case '/about':
-      // About: "Glass Aperture" - horizontal split opens
+      // About: "Cascade" - horizontal bars cascading down the screen
       return (
         <div
           key="about-overlay"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            pointerEvents: 'none',
-            zIndex: 50,
-            overflow: 'hidden',
-          }}
+          style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', pointerEvents: 'none', zIndex: 50 }}
         >
-          <motion.div
-            initial={{ top: '50%', opacity: 0.5 }}
-            animate={{ top: '-10%', opacity: 0 }}
-            transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
-            style={{
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              height: '1px',
-              backgroundColor: 'var(--accent-primary)',
-            }}
-          />
-          <motion.div
-            initial={{ top: '50%', opacity: 0.5 }}
-            animate={{ top: '110%', opacity: 0 }}
-            transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
-            style={{
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              height: '1px',
-              backgroundColor: 'var(--accent-primary)',
-            }}
-          />
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <motion.div
+              key={i}
+              initial={{ x: '-100%', opacity: 0.8 }}
+              animate={{ x: '100%', opacity: 0 }}
+              transition={{
+                duration: 1.0,
+                delay: i * 0.1, // Staggered drop
+                ease: OVERLAY_EASE,
+              }}
+              style={{
+                flex: 1,
+                width: '100%',
+                backgroundColor: 'var(--accent-primary)',
+                borderBottom: i < 5 ? '1px solid rgba(0, 0, 0, 0.1)' : 'none',
+              }}
+            />
+          ))}
         </div>
       );
 
     case '/resume':
-      // Resume: "Timeline Draw" - vertical line down the left
+      // Resume: "Slide-in Panel" - a sleek solid panel that sweeps across the screen horizontally
       return (
         <motion.div
           key="resume-overlay"
-          initial={{ scaleY: 0, opacity: 0.5 }}
-          animate={{ scaleY: 1, opacity: 0 }}
+          initial={{ x: '100%', opacity: 1 }} // Start fully off-screen right, solid
+          animate={{ x: '-100%', opacity: 0 }} // Slide to off-screen left, fading out
           transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
           style={{
             position: 'absolute',
             top: 0,
-            left: '40px', // Roughly aligns with resume timeline padding
-            width: '2px',
-            height: '100%',
+            left: 0,
+            width: '100vw',
+            height: '100vh',
             backgroundColor: 'var(--accent-primary)',
-            transformOrigin: 'top',
             pointerEvents: 'none',
             zIndex: 50,
           }}
@@ -109,30 +96,24 @@ function getOverlayConfig(pathname) {
       );
 
     case '/clients':
-      // Clients: "Constellation Reveal" - three dots that fade
+      // Clients: "Segmented Unveil" - vertical data columns sliding away in a staggered wave
       return (
         <div
           key="clients-overlay"
-          style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 50 }}
+          style={{ position: 'absolute', inset: 0, display: 'flex', pointerEvents: 'none', zIndex: 50 }}
         >
-          {[
-            { top: '20%', left: '30%' },
-            { top: '50%', left: '70%' },
-            { top: '80%', left: '40%' },
-          ].map((pos, i) => (
+          {[0, 1, 2, 3].map((i) => (
             <motion.div
               key={i}
-              initial={{ scale: 0, opacity: 0.6 }}
-              animate={{ scale: 1, opacity: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: OVERLAY_EASE }}
+              initial={{ scaleY: 1, opacity: 0.6 }}
+              animate={{ scaleY: 0, opacity: 0 }}
+              transition={{ duration: 1.0, delay: i * 0.15, ease: OVERLAY_EASE }}
               style={{
-                ...pos,
-                position: 'absolute',
-                width: '6px',
-                height: '6px',
-                borderRadius: '50%',
+                flex: 1,
+                height: '100%',
                 backgroundColor: 'var(--accent-primary)',
-                boxShadow: '0 0 20px var(--accent-glow)',
+                transformOrigin: i % 2 === 0 ? 'top' : 'bottom', // Alternating sliding direction
+                borderRight: i < 3 ? '1px solid rgba(0, 0, 0, 0.2)' : 'none', // Subtle separation
               }}
             />
           ))}
@@ -140,24 +121,35 @@ function getOverlayConfig(pathname) {
       );
 
     case '/contact':
-      // Contact: "Direct Link" - fast diagonal sweep
+      // Contact: "3D Data Cube" - A rotating 3D cube that expands and dissolves
       return (
-        <motion.div
+        <div
           key="contact-overlay"
-          initial={{ x: '-100%', skewX: -45, opacity: 0.6 }}
-          animate={{ x: '100%', skewX: -45, opacity: 0 }}
-          transition={{ duration: 0.6, ease: OVERLAY_EASE }}
           style={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '200%',
-            height: '100%',
-            background: 'linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent)',
+            inset: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             pointerEvents: 'none',
             zIndex: 50,
+            perspective: '1000px', // Required for 3D effect
           }}
-        />
+        >
+          <motion.div
+            initial={{ rotateX: 45, rotateY: 45, scale: 0.5, opacity: 0.8 }}
+            animate={{ rotateX: 180, rotateY: 180, scale: 3, opacity: 0 }}
+            transition={{ duration: OVERLAY_DURATION, ease: OVERLAY_EASE }}
+            style={{
+              width: '200px',
+              height: '200px',
+              backgroundColor: 'var(--accent-primary)',
+              boxShadow: '0 0 40px var(--accent-primary)',
+              transformStyle: 'preserve-3d',
+              borderRadius: '10px',
+            }}
+          />
+        </div>
       );
 
     default:
