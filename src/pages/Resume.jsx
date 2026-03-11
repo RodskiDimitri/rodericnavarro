@@ -1,15 +1,15 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import Experience from '../components/sections/Experience';
 import Skills from '../components/sections/Skills';
 
 const Resume = () => {
     return (
         <div className="container" style={{ padding: '2rem 1.5rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <Helmet>
-                <title>Resume | Roderic Navarro</title>
-                <meta name="description" content="Review Roderic Navarro's professional journey, including roles as an AI Technology Consultant and IT Innovation Manager." />
-            </Helmet>
+            <SEO 
+                title="Resume | Roderic Navarro"
+                description="Review Roderic Navarro's professional journey, including roles as an AI Technology Consultant and IT Innovation Manager."
+            />
             <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', textAlign: 'center', flexShrink: 0 }}>
                 My <span className="text-gradient">Resume</span>
             </h2>

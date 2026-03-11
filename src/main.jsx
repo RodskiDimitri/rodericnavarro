@@ -29,7 +29,10 @@ export const createRoot = ViteReactSSG(
     routes,
     basename: import.meta.env.BASE_URL 
   },
-  () => {
+  ({ app, isClient, initialState }) => {
     // Optional context or router modifications
+    // For react-helmet-async, ViteReactSSG automatically provides a HelmetProvider
+    // when using its built-in extract API if configured, but let's make sure
+    // we use the correct SSG approach.
   }
 )
