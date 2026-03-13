@@ -1,76 +1,50 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Terminal } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import ParticleNetwork from '../ui/ParticleNetwork';
 import { siteConfig } from '../../data/config';
 
 const Hero = ({ setActiveSection }) => {
     return (
-        <section id="home" style={{
-            height: '100%',
+        <section id="home" className="hero-section" style={{
+            minHeight: '100vh',
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'center',
             position: 'relative',
             overflow: 'hidden'
         }}>
+            <style>{`
+                @media (max-width: 640px) {
+                    .hero-section {
+                        min-height: auto !important;
+                        padding-top: 4rem;
+                        padding-bottom: 2rem;
+                    }
+                    .hero-buttons {
+                        flex-direction: column;
+                        width: 100%;
+                    }
+                    .hero-buttons > * {
+                        width: 100%;
+                    }
+                }
+            `}</style>
             {/* Background animated elements */}
             <div style={{ position: 'absolute', top: '20%', left: '10%', width: '300px', height: '300px', background: 'var(--accent-primary)', filter: 'blur(150px)', opacity: 0.15, borderRadius: '50%' }}></div>
             <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '400px', height: '400px', background: 'var(--accent-secondary)', filter: 'blur(200px)', opacity: 0.15, borderRadius: '50%' }}></div>
 
             <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-                <div className="grid grid-cols-2 gap-8 items-center">
-
-                    {/* Text Content */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                    >
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2, duration: 0.5 }}
-                            style={{ display: 'inline-block', padding: '0.5rem 1rem', background: 'rgba(0, 240, 255, 0.1)', border: '1px solid rgba(0, 240, 255, 0.2)', borderRadius: '99px', color: 'var(--accent-primary)', marginBottom: '1.5rem', fontWeight: 500, fontSize: '0.9rem' }}
-                        >
-                            Available for New Projects
-                        </motion.div>
-
-                        <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', lineHeight: 1.1, marginBottom: '1.5rem', fontWeight: 700 }}>
-                            Hi, I'm <br />
-                            <span className="text-gradient">{siteConfig.personal.name}</span>
-                        </h1>
-
-                        <h2 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', fontWeight: 400, color: 'var(--text-main)', marginBottom: '1.5rem' }}>
-                            Strategic <span style={{ color: 'var(--accent-primary)', fontWeight: 600 }}>Technology Leader</span> & <span style={{ color: 'var(--accent-secondary)', fontWeight: 600 }}>AI Consultant</span>
-                        </h2>
-
-                        <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '2.5rem', maxWidth: '500px' }}>
-                            {siteConfig.meta.description}
-                        </p>
-
-                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                            <a href={siteConfig.personal.resumeUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                                View Resume <ArrowRight size={18} />
-                            </a>
-                            <button
-                                onClick={() => setActiveSection('contact')}
-                                className="btn btn-outline glow-hover"
-                                style={{ cursor: 'pointer' }}
-                            >
-                                Contact Me
-                            </button>
-                        </div>
-                    </motion.div>
-
-                    {/* Visual Element */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        style={{ display: 'flex', justifyContent: 'center' }}
-                        className="hero-visual"
-                    >
-                        <div className="glass" style={{ width: '100%', maxWidth: '450px', aspectRatio: '1/1', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', boxShadow: '0 0 40px rgba(0,240,255,0.1)' }}>
+                {/* Text Content — centered, full-width */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                >
+                    {/* Mobile-only Profile Picture */}
+                    <div className="mobile-only" style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center', width: '100%' }}>
+                        <div className="glass" style={{ width: '180px', height: '180px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', boxShadow: '0 0 30px rgba(0,240,255,0.1)' }}>
                             <motion.div
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
@@ -79,7 +53,7 @@ const Hero = ({ setActiveSection }) => {
                             <motion.div
                                 animate={{ rotate: -360 }}
                                 transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                                style={{ position: 'absolute', width: '80%', height: '80%', border: '1px solid var(--accent-secondary)', borderRadius: '50%', opacity: 0.2 }}
+                                style={{ position: 'absolute', width: '85%', height: '85%', border: '1px solid var(--accent-secondary)', borderRadius: '50%', opacity: 0.2 }}
                             />
 
                             {/* Neural Network Background inside glass ring */}
@@ -87,21 +61,55 @@ const Hero = ({ setActiveSection }) => {
                                 <ParticleNetwork
                                     particleColor="rgba(0, 240, 255, 0.4)"
                                     lineColor="rgba(0, 240, 255, 0.2)"
-                                    particleCount={40}
-                                    connectionDistance={120}
+                                    particleCount={20}
+                                    connectionDistance={80}
                                     speed={0.4}
                                 />
                             </div>
 
                             <motion.div
-                                style={{ animation: 'float 6s ease-in-out infinite', width: '240px', height: '240px', borderRadius: '50%', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 240, 255, 0.2)', border: '4px solid var(--bg-secondary)', position: 'relative', zIndex: 10 }}
+                                style={{ animation: 'float 6s ease-in-out infinite', width: '130px', height: '130px', borderRadius: '50%', overflow: 'hidden', boxShadow: '0 10px 20px rgba(0, 240, 255, 0.2)', border: '3px solid var(--bg-secondary)', position: 'relative', zIndex: 10 }}
                             >
                                 <img src={`${import.meta.env.BASE_URL}profile.png`} alt="Roderic Navarro" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </motion.div>
                         </div>
+                    </div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                        style={{ display: 'inline-block', padding: '0.5rem 1rem', background: 'rgba(0, 240, 255, 0.1)', border: '1px solid rgba(0, 240, 255, 0.2)', borderRadius: '99px', color: 'var(--accent-primary)', marginBottom: '1.5rem', fontWeight: 500, fontSize: '0.9rem' }}
+                    >
+                        Available for New Projects
                     </motion.div>
 
-                </div>
+                    <h1 style={{ fontSize: 'clamp(3rem, 9vw, 5.5rem)', lineHeight: 1.1, marginBottom: '1.5rem', fontWeight: 700 }}>
+                        Hi, I'm <br />
+                        <span className="text-gradient">{siteConfig.personal.name}</span>
+                    </h1>
+
+                    <h2 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: 400, color: 'var(--text-main)', marginBottom: '1.5rem' }}>
+                        Strategic <span style={{ color: 'var(--accent-primary)', fontWeight: 600 }}>Technology Leader</span> &amp; <span style={{ color: 'var(--accent-secondary)', fontWeight: 600 }}>AI Consultant</span>
+                    </h2>
+
+                    <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '2.5rem', maxWidth: '560px', margin: '0 auto 2.5rem' }}>
+                        {siteConfig.meta.description}
+                    </p>
+
+                    <div className="hero-buttons" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                        <a href={siteConfig.personal.resumeUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                            View Resume <ArrowRight size={18} />
+                        </a>
+                        <button
+                            onClick={() => setActiveSection('contact')}
+                            className="btn btn-outline glow-hover"
+                            style={{ cursor: 'pointer' }}
+                        >
+                            Contact Me
+                        </button>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

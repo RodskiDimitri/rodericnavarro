@@ -1,7 +1,6 @@
 import React from 'react';
 import SEO from '../components/SEO';
 import AboutSection from '../components/sections/About';
-import ResultsAtGlance from '../components/sections/ResultsAtGlance';
 
 const About = () => {
     return (
@@ -11,7 +10,6 @@ const About = () => {
                 description="Learn about Roderic Navarro's 17+ years of experience in IT operations, strategy, and AI tech consulting."
             />
             <AboutSection />
-            <ResultsAtGlance />
         </div>
     );
 };
