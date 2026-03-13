@@ -4,6 +4,12 @@ import { siteConfig } from '../data/config';
 
 const Footer = () => {
     const scrollToTop = () => {
+        // Desktop uses `.main-card` as the scrollable container
+        const mainCard = document.querySelector('.main-card');
+        if (mainCard) {
+            mainCard.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // Mobile uses the default window for scrolling
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 

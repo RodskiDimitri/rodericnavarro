@@ -75,14 +75,7 @@ const Hero = ({ setActiveSection }) => {
                         </div>
                     </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2, duration: 0.5 }}
-                        style={{ display: 'inline-block', padding: '0.5rem 1rem', background: 'rgba(0, 240, 255, 0.1)', border: '1px solid rgba(0, 240, 255, 0.2)', borderRadius: '99px', color: 'var(--accent-primary)', marginBottom: '1.5rem', fontWeight: 500, fontSize: '0.9rem' }}
-                    >
-                        Available for New Projects
-                    </motion.div>
+
 
                     <h1 style={{ fontSize: 'clamp(3rem, 9vw, 5.5rem)', lineHeight: 1.1, marginBottom: '1.5rem', fontWeight: 700 }}>
                         Hi, I'm <br />
