@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Cpu } from 'lucide-react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { siteConfig } from '../data/config';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -21,13 +22,7 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'About', path: '/about' },
-        { name: 'Resume', path: '/resume' },
-        { name: 'Clients', path: '/clients' },
-        { name: 'Contact', path: '/contact' }
-    ];
+    const navLinks = siteConfig.navLinks;
 
     return (
         <nav

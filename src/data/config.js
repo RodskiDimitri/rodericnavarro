@@ -16,5 +16,12 @@ export const siteConfig = {
         title: "Roderic Navarro | AI Consultant in Parañaque, Metro Manila",
         description: "Delivering measurable business impact through intelligent AI integration, workflow automation, and robust network infrastructure solutions.",
         footerDescription: "Transforming business operations through intelligent AI integration and robust network infrastructure solutions."
-    }
+    },
+    navLinks: [
+        { name: 'Home', path: '/' },
+        { name: 'About', path: '/about' },
+        { name: 'Resume', path: '/resume' },
+        { name: 'Clients', path: '/clients' },
+        { name: 'Contact', path: '/contact' }
+    ]
 };

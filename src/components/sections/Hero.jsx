@@ -96,7 +96,7 @@ const Hero = ({ setActiveSection }) => {
                         </a>
                         <button
                             onClick={() => setActiveSection('contact')}
-                            className="btn btn-outline glow-hover"
+                            className="btn btn-outline glow-hover mobile-only"
                             style={{ cursor: 'pointer' }}
                         >
                             Contact Me

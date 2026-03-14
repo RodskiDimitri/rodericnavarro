@@ -6,13 +6,7 @@ import { siteConfig } from '../data/config';
 
 const Sidebar = () => {
   const navigate = useNavigate();
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Resume', path: '/resume' },
-    { name: 'Clients', path: '/clients' },
-    { name: 'Contact', path: '/contact' }
-  ];
+  const navLinks = siteConfig.navLinks.filter(link => link.name !== 'Contact');
   return (
     <aside className="sidebar desktop-only">
       <div className="sidebar-content">
@@ -44,9 +38,9 @@ const Sidebar = () => {
 
           <div className="social-links">
             <a href={siteConfig.social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /></a>
-            <button onClick={() => navigate('/contact')} aria-label="Email" style={{ padding: 0, border: 'none', background: 'none', display: 'flex', cursor: 'pointer' }}>
+            <a href={`mailto:${siteConfig.personal.email}`} aria-label="Email" style={{ padding: 0, border: 'none', background: 'none', display: 'flex', cursor: 'pointer' }}>
               <div className="social-btn"><Mail size={20} /></div>
-            </button>
+            </a>
           </div>
         </div>
 
