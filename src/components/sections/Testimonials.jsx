@@ -139,12 +139,10 @@ const Testimonials = () => {
                     transition={{ duration: 0.6 }}
                     style={{ textAlign: 'center', marginBottom: '2rem' }}
                 >
-                    <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>
-                        What Clients <span className="text-gradient">Say</span>
+                    <h2 style={{ fontSize: '2rem', marginBottom: '1rem', display: 'inline-block' }}>
+                        <span className="text-gradient">Testimonials</span>
                     </h2>
-                    <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto', fontSize: '0.9rem' }}>
-                        Real feedback from business leaders who experienced measurable transformation.
-                    </p>
+                    <div style={{ width: '40px', height: '3px', background: 'linear-gradient(90deg, var(--accent-primary), var(--accent-secondary))', margin: '0 auto', borderRadius: '2px' }}></div>
                 </motion.div>
 
                 <div className="grid grid-cols-3 gap-8" style={{ alignItems: 'stretch' }}>

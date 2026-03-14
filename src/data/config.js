@@ -19,7 +19,7 @@ export const siteConfig = {
     },
     navLinks: [
         { name: 'Home', path: '/' },
-        { name: 'About', path: '/about' },
+        { name: 'About Me', path: '/about' },
         { name: 'Resume', path: '/resume' },
         { name: 'Clients', path: '/clients' },
         { name: 'Contact', path: '/contact' }
