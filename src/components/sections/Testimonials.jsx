@@ -1,16 +1,30 @@
-import React, { useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { testimonialsData as testimonials } from '../../data/content';
 
+// Variants for the entering/exiting card only
+const cardVariants = {
+    enter: (direction) => ({
+        x: direction > 0 ? 80 : -80,
+        opacity: 0,
+        scale: 0.95
+    }),
+    center: {
+        x: 0,
+        opacity: 1,
+        scale: 1
+    },
+    exit: (direction) => ({
+        x: direction > 0 ? -80 : 80,
+        opacity: 0,
+        scale: 0.95
+    })
+};
+
 const TestimonialCard = ({ quote, name, role, industry, rating, accentColor }) => {
     return (
-        <motion.div
-            layout // Enable smooth position changes
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+        <div
             className="glass glow-hover"
             style={{
                 width: '100%',
@@ -97,27 +111,47 @@ const TestimonialCard = ({ quote, name, role, industry, rating, accentColor }) =
                     </p>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 
 const Testimonials = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [direction, setDirection] = useState(1);
+    const [visibleCount, setVisibleCount] = useState(3);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setVisibleCount(1);
+            } else if (window.innerWidth < 1024) {
+                setVisibleCount(2);
+            } else {
+                setVisibleCount(3);
+            }
+        };
+
+        // Initialize and add listener
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleNext = useCallback(() => {
+        setDirection(1);
         setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, []);
 
     const handlePrev = useCallback(() => {
+        setDirection(-1);
         setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
     }, []);
 
-    // Get 3 visible testimonials with infinite wrap-around
+    // Get visible testimonials with infinite wrap-around
     const getVisibleTestimonials = () => {
         const visible = [];
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < visibleCount; i++) {
             const index = (currentIndex + i) % testimonials.length;
-            // Use originalIndex as key to let Framer Motion track the same element moving
             visible.push({ ...testimonials[index], originalIndex: index });
         }
         return visible;
@@ -196,23 +230,49 @@ const Testimonials = () => {
                     </div>
                 </div>
 
-                {/* Grid layout with Framer Motion layout animations */}
-                <div style={{ overflow: 'hidden', padding: '1rem 0' }}>
-                    <div style={{ 
-                        display: 'grid', 
-                        gridTemplateColumns: 'repeat(3, 1fr)', 
-                        gap: '2rem',
-                        alignItems: 'stretch'
-                    }}>
-                        <AnimatePresence mode="popLayout" initial={false}>
-                            {visibleItems.map((testimonial) => (
-                                <TestimonialCard 
-                                    key={testimonial.originalIndex} 
-                                    {...testimonial} 
-                                />
-                            ))}
-                        </AnimatePresence>
-                    </div>
+                {/* Slider: one card enters/exits at a time, others reposition */}
+                <div style={{ overflow: 'hidden', padding: '1rem 0', position: 'relative' }}>
+                    <LayoutGroup>
+                        <div style={{
+                            display: 'flex',
+                            gap: '2rem',
+                            alignItems: 'stretch',
+                            width: '100%'
+                        }}>
+                            <AnimatePresence mode="popLayout" custom={direction} initial={false}>
+                                {visibleItems.map((testimonial) => {
+                                    const gapTotal = 2 * (visibleCount - 1);
+                                    const flexBasis = visibleCount > 1
+                                        ? `calc(${100 / visibleCount}% - ${gapTotal / visibleCount}rem)`
+                                        : '100%';
+
+                                    return (
+                                        <motion.div
+                                            key={testimonial.originalIndex}
+                                            layout
+                                            custom={direction}
+                                            variants={cardVariants}
+                                            initial="enter"
+                                            animate="center"
+                                            exit="exit"
+                                            transition={{
+                                                layout: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+                                                opacity: { duration: 0.3 },
+                                                x: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+                                                scale: { duration: 0.3 }
+                                            }}
+                                            style={{
+                                                flex: `0 0 ${flexBasis}`,
+                                                minWidth: 0
+                                            }}
+                                        >
+                                            <TestimonialCard {...testimonial} />
+                                        </motion.div>
+                                    );
+                                })}
+                            </AnimatePresence>
+                        </div>
+                    </LayoutGroup>
                 </div>
             </div>
         </section>
@@ -220,3 +280,4 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
