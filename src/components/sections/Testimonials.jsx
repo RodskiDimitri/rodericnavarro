@@ -186,7 +186,6 @@ const Testimonials = () => {
                         <h2 style={{ fontSize: '2rem', marginBottom: '1rem', display: 'inline-block' }}>
                             <span className="text-gradient">Testimonials</span>
                         </h2>
-                        <div style={{ width: '40px', height: '3px', background: 'linear-gradient(90deg, var(--accent-primary), var(--accent-secondary))', borderRadius: '2px' }}></div>
                     </motion.div>
 
                     {/* Navigation Arrows */}
