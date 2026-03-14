@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
+import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { testimonialsData as testimonials } from '../../data/content';
 
 const TestimonialCard = ({ quote, name, role, industry, rating, delay, accentColor }) => {
@@ -19,7 +19,9 @@ const TestimonialCard = ({ quote, name, role, industry, rating, delay, accentCol
                 gap: '1rem',
                 position: 'relative',
                 overflow: 'hidden',
-                height: '100%'
+                minWidth: '320px', // Prevents shrinking
+                flex: '0 0 auto', // Allows scrolling
+                scrollSnapAlign: 'start', // Snaps cleanly
             }}
         >
             {/* Quote icon */}
@@ -100,6 +102,34 @@ const TestimonialCard = ({ quote, name, role, industry, rating, delay, accentCol
 };
 
 const Testimonials = () => {
+    const scrollContainerRef = useRef(null);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(true);
+
+    const checkScrollability = () => {
+        if (scrollContainerRef.current) {
+            const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+            setCanScrollLeft(scrollLeft > 0);
+            // using a small buffer (2px) to account for sub-pixel rounding
+            setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 2); 
+        }
+    };
+
+    useEffect(() => {
+        checkScrollability();
+        window.addEventListener('resize', checkScrollability);
+        return () => window.removeEventListener('resize', checkScrollability);
+    }, []);
+
+    const scroll = (direction) => {
+        if (scrollContainerRef.current) {
+            const scrollAmount = 350; // Approximates one card width + gap
+            scrollContainerRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     return (
         <section id="testimonials" style={{
@@ -108,49 +138,104 @@ const Testimonials = () => {
             padding: '2rem 0'
         }}>
             {/* Decorative elements */}
-            <div style={{
-                position: 'absolute',
-                top: '20%',
-                right: '5%',
-                width: '300px',
-                height: '300px',
-                background: 'var(--accent-secondary)',
-                filter: 'blur(150px)',
-                opacity: 0.08,
-                borderRadius: '50%'
-            }}></div>
-            <div style={{
-                position: 'absolute',
-                bottom: '20%',
-                left: '5%',
-                width: '250px',
-                height: '250px',
-                background: 'var(--accent-primary)',
-                filter: 'blur(120px)',
-                opacity: 0.08,
-                borderRadius: '50%'
-            }}></div>
+            <div style={{ position: 'absolute', top: '20%', right: '5%', width: '300px', height: '300px', background: 'var(--accent-secondary)', filter: 'blur(150px)', opacity: 0.08, borderRadius: '50%' }}></div>
+            <div style={{ position: 'absolute', bottom: '20%', left: '5%', width: '250px', height: '250px', background: 'var(--accent-primary)', filter: 'blur(120px)', opacity: 0.08, borderRadius: '50%' }}></div>
 
             <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    style={{ textAlign: 'center', marginBottom: '2rem' }}
-                >
-                    <h2 style={{ fontSize: '2rem', marginBottom: '1rem', display: 'inline-block' }}>
-                        <span className="text-gradient">Testimonials</span>
-                    </h2>
-                    <div style={{ width: '40px', height: '3px', background: 'linear-gradient(90deg, var(--accent-primary), var(--accent-secondary))', margin: '0 auto', borderRadius: '2px' }}></div>
-                </motion.div>
+                {/* Header Row (Title on left, Arrows on right) */}
+                <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'space-between', 
+                    alignItems: 'flex-end',
+                    marginBottom: '2rem'
+                }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 style={{ fontSize: '2rem', marginBottom: '1rem', display: 'inline-block' }}>
+                            <span className="text-gradient">Testimonials</span>
+                        </h2>
+                        <div style={{ width: '40px', height: '3px', background: 'linear-gradient(90deg, var(--accent-primary), var(--accent-secondary))', borderRadius: '2px' }}></div>
+                    </motion.div>
 
-                <div className="grid grid-cols-3 gap-8" style={{ alignItems: 'stretch' }}>
+                    {/* Navigation Arrows */}
+                    <div style={{ display: 'flex', gap: '0.75rem', paddingBottom: '0.5rem' }}>
+                        <button 
+                            onClick={() => scroll('left')}
+                            disabled={!canScrollLeft}
+                            aria-label="Previous Testimonial"
+                            style={{
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                width: '40px', height: '40px', borderRadius: '8px',
+                                background: 'transparent',
+                                border: '1px solid rgba(255,255,255,0.1)',
+                                color: canScrollLeft ? 'var(--text-main)' : 'rgba(255,255,255,0.2)',
+                                cursor: canScrollLeft ? 'pointer' : 'default',
+                                transition: 'all 0.3s ease',
+                                outline: 'none'
+                            }}
+                            onMouseEnter={(e) => canScrollLeft && (e.currentTarget.style.borderColor = 'var(--accent-primary)')}
+                            onMouseLeave={(e) => canScrollLeft && (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
+                        <button 
+                            onClick={() => scroll('right')}
+                            disabled={!canScrollRight}
+                            aria-label="Next Testimonial"
+                            style={{
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                width: '40px', height: '40px', borderRadius: '8px',
+                                background: 'transparent',
+                                border: '1px solid rgba(255,255,255,0.1)',
+                                color: canScrollRight ? 'var(--text-main)' : 'rgba(255,255,255,0.2)',
+                                cursor: canScrollRight ? 'pointer' : 'default',
+                                transition: 'all 0.3s ease',
+                                outline: 'none'
+                            }}
+                            onMouseEnter={(e) => canScrollRight && (e.currentTarget.style.borderColor = 'var(--accent-secondary)')}
+                            onMouseLeave={(e) => canScrollRight && (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
+                        >
+                            <ChevronRight size={20} />
+                        </button>
+                    </div>
+                </div>
+
+                {/* Scrollable Container (no visible scrollbars) */}
+                <div 
+                    ref={scrollContainerRef}
+                    onScroll={checkScrollability}
+                    className="no-scrollbar"
+                    style={{ 
+                        display: 'flex',
+                        gap: '2rem',
+                        overflowX: 'auto',
+                        scrollBehavior: 'smooth',
+                        scrollSnapType: 'x mandatory',
+                        paddingBottom: '1rem', // Space for shadows
+                        paddingTop: '0.5rem',
+                        alignItems: 'stretch'
+                    }}
+                >
                     {testimonials.map((testimonial, idx) => (
                         <TestimonialCard key={idx} {...testimonial} delay={idx * 0.15} />
                     ))}
                 </div>
             </div>
+
+            {/* Inject small style to hide scrollbar in all browsers */}
+            <style>{`
+                .no-scrollbar::-webkit-scrollbar {
+                    display: none;
+                }
+                .no-scrollbar {
+                    -ms-overflow-style: none;  /* IE and Edge */
+                    scrollbar-width: none;  /* Firefox */
+                }
+            `}</style>
         </section>
     );
 };
