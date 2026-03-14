@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { testimonialsData as testimonials } from '../../data/content';
@@ -6,12 +6,14 @@ import { testimonialsData as testimonials } from '../../data/content';
 const TestimonialCard = ({ quote, name, role, industry, rating, accentColor }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4 }}
+            layout // Enable smooth position changes
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="glass glow-hover"
             style={{
+                width: '100%',
                 padding: '1.5rem 1.25rem',
                 borderRadius: '16px',
                 display: 'flex',
@@ -102,20 +104,20 @@ const TestimonialCard = ({ quote, name, role, industry, rating, accentColor }) =
 const Testimonials = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const handleNext = () => {
+    const handleNext = useCallback(() => {
         setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    };
+    }, []);
 
-    const handlePrev = () => {
+    const handlePrev = useCallback(() => {
         setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    };
+    }, []);
 
-    // Calculate the 3 visible testimonials (with infinite wrap-around)
+    // Get 3 visible testimonials with infinite wrap-around
     const getVisibleTestimonials = () => {
         const visible = [];
         for (let i = 0; i < 3; i++) {
             const index = (currentIndex + i) % testimonials.length;
-            // attach the original index as 'id' for React keys to ensure smooth transitions
+            // Use originalIndex as key to let Framer Motion track the same element moving
             visible.push({ ...testimonials[index], originalIndex: index });
         }
         return visible;
@@ -194,16 +196,23 @@ const Testimonials = () => {
                     </div>
                 </div>
 
-                {/* Testimonial Grid with 3 items */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ alignItems: 'stretch' }}>
-                    <AnimatePresence mode="popLayout">
-                        {visibleItems.map((testimonial) => (
-                            <TestimonialCard 
-                                key={`${testimonial.originalIndex}-${currentIndex}`} 
-                                {...testimonial} 
-                            />
-                        ))}
-                    </AnimatePresence>
+                {/* Grid layout with Framer Motion layout animations */}
+                <div style={{ overflow: 'hidden', padding: '1rem 0' }}>
+                    <div style={{ 
+                        display: 'grid', 
+                        gridTemplateColumns: 'repeat(3, 1fr)', 
+                        gap: '2rem',
+                        alignItems: 'stretch'
+                    }}>
+                        <AnimatePresence mode="popLayout" initial={false}>
+                            {visibleItems.map((testimonial) => (
+                                <TestimonialCard 
+                                    key={testimonial.originalIndex} 
+                                    {...testimonial} 
+                                />
+                            ))}
+                        </AnimatePresence>
+                    </div>
                 </div>
             </div>
         </section>
