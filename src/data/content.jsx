@@ -202,5 +202,13 @@ export const testimonialsData = [
         industry: "Professional Services",
         rating: 5,
         accentColor: "#00ff88"
+    },
+    {
+        quote: "I met Rod on a project which required his expertise on the IT Admin side. He was and has been extremely helpful and knowledgeable in all aspects, including personal help with my consulting firm. His character and integrity truly shines! I highly recommend using Rod for your IT/specialty projects.",
+        name: "Liza Rickard",
+        role: "Owner",
+        industry: "IMG GROUP",
+        rating: 5,
+        accentColor: "#a855f7"
     }
 ];

@@ -1,15 +1,15 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { testimonialsData as testimonials } from '../../data/content';
 
-const TestimonialCard = ({ quote, name, role, industry, rating, delay, accentColor }) => {
+const TestimonialCard = ({ quote, name, role, industry, rating, accentColor }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.4 }}
             className="glass glow-hover"
             style={{
                 padding: '1.5rem 1.25rem',
@@ -19,9 +19,7 @@ const TestimonialCard = ({ quote, name, role, industry, rating, delay, accentCol
                 gap: '1rem',
                 position: 'relative',
                 overflow: 'hidden',
-                minWidth: '320px', // Prevents shrinking
-                flex: '0 0 auto', // Allows scrolling
-                scrollSnapAlign: 'start', // Snaps cleanly
+                height: '100%'
             }}
         >
             {/* Quote icon */}
@@ -102,34 +100,28 @@ const TestimonialCard = ({ quote, name, role, industry, rating, delay, accentCol
 };
 
 const Testimonials = () => {
-    const scrollContainerRef = useRef(null);
-    const [canScrollLeft, setCanScrollLeft] = useState(false);
-    const [canScrollRight, setCanScrollRight] = useState(true);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-    const checkScrollability = () => {
-        if (scrollContainerRef.current) {
-            const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-            setCanScrollLeft(scrollLeft > 0);
-            // using a small buffer (2px) to account for sub-pixel rounding
-            setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 2); 
-        }
+    const handleNext = () => {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     };
 
-    useEffect(() => {
-        checkScrollability();
-        window.addEventListener('resize', checkScrollability);
-        return () => window.removeEventListener('resize', checkScrollability);
-    }, []);
-
-    const scroll = (direction) => {
-        if (scrollContainerRef.current) {
-            const scrollAmount = 350; // Approximates one card width + gap
-            scrollContainerRef.current.scrollBy({
-                left: direction === 'left' ? -scrollAmount : scrollAmount,
-                behavior: 'smooth'
-            });
-        }
+    const handlePrev = () => {
+        setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
     };
+
+    // Calculate the 3 visible testimonials (with infinite wrap-around)
+    const getVisibleTestimonials = () => {
+        const visible = [];
+        for (let i = 0; i < 3; i++) {
+            const index = (currentIndex + i) % testimonials.length;
+            // attach the original index as 'id' for React keys to ensure smooth transitions
+            visible.push({ ...testimonials[index], originalIndex: index });
+        }
+        return visible;
+    };
+
+    const visibleItems = getVisibleTestimonials();
 
     return (
         <section id="testimonials" style={{
@@ -142,7 +134,7 @@ const Testimonials = () => {
             <div style={{ position: 'absolute', bottom: '20%', left: '5%', width: '250px', height: '250px', background: 'var(--accent-primary)', filter: 'blur(120px)', opacity: 0.08, borderRadius: '50%' }}></div>
 
             <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-                {/* Header Row (Title on left, Arrows on right) */}
+                {/* Header Row */}
                 <div style={{ 
                     display: 'flex', 
                     justifyContent: 'space-between', 
@@ -164,78 +156,56 @@ const Testimonials = () => {
                     {/* Navigation Arrows */}
                     <div style={{ display: 'flex', gap: '0.75rem', paddingBottom: '0.5rem' }}>
                         <button 
-                            onClick={() => scroll('left')}
-                            disabled={!canScrollLeft}
+                            onClick={handlePrev}
                             aria-label="Previous Testimonial"
                             style={{
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 width: '40px', height: '40px', borderRadius: '8px',
                                 background: 'transparent',
                                 border: '1px solid rgba(255,255,255,0.1)',
-                                color: canScrollLeft ? 'var(--text-main)' : 'rgba(255,255,255,0.2)',
-                                cursor: canScrollLeft ? 'pointer' : 'default',
+                                color: 'var(--text-main)',
+                                cursor: 'pointer',
                                 transition: 'all 0.3s ease',
                                 outline: 'none'
                             }}
-                            onMouseEnter={(e) => canScrollLeft && (e.currentTarget.style.borderColor = 'var(--accent-primary)')}
-                            onMouseLeave={(e) => canScrollLeft && (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
+                            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent-primary)')}
+                            onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
                         >
                             <ChevronLeft size={20} />
                         </button>
                         <button 
-                            onClick={() => scroll('right')}
-                            disabled={!canScrollRight}
+                            onClick={handleNext}
                             aria-label="Next Testimonial"
                             style={{
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 width: '40px', height: '40px', borderRadius: '8px',
                                 background: 'transparent',
                                 border: '1px solid rgba(255,255,255,0.1)',
-                                color: canScrollRight ? 'var(--text-main)' : 'rgba(255,255,255,0.2)',
-                                cursor: canScrollRight ? 'pointer' : 'default',
+                                color: 'var(--text-main)',
+                                cursor: 'pointer',
                                 transition: 'all 0.3s ease',
                                 outline: 'none'
                             }}
-                            onMouseEnter={(e) => canScrollRight && (e.currentTarget.style.borderColor = 'var(--accent-secondary)')}
-                            onMouseLeave={(e) => canScrollRight && (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
+                            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent-secondary)')}
+                            onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
                         >
                             <ChevronRight size={20} />
                         </button>
                     </div>
                 </div>
 
-                {/* Scrollable Container (no visible scrollbars) */}
-                <div 
-                    ref={scrollContainerRef}
-                    onScroll={checkScrollability}
-                    className="no-scrollbar"
-                    style={{ 
-                        display: 'flex',
-                        gap: '2rem',
-                        overflowX: 'auto',
-                        scrollBehavior: 'smooth',
-                        scrollSnapType: 'x mandatory',
-                        paddingBottom: '1rem', // Space for shadows
-                        paddingTop: '0.5rem',
-                        alignItems: 'stretch'
-                    }}
-                >
-                    {testimonials.map((testimonial, idx) => (
-                        <TestimonialCard key={idx} {...testimonial} delay={idx * 0.15} />
-                    ))}
+                {/* Testimonial Grid with 3 items */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ alignItems: 'stretch' }}>
+                    <AnimatePresence mode="popLayout">
+                        {visibleItems.map((testimonial) => (
+                            <TestimonialCard 
+                                key={`${testimonial.originalIndex}-${currentIndex}`} 
+                                {...testimonial} 
+                            />
+                        ))}
+                    </AnimatePresence>
                 </div>
             </div>
-
-            {/* Inject small style to hide scrollbar in all browsers */}
-            <style>{`
-                .no-scrollbar::-webkit-scrollbar {
-                    display: none;
-                }
-                .no-scrollbar {
-                    -ms-overflow-style: none;  /* IE and Edge */
-                    scrollbar-width: none;  /* Firefox */
-                }
-            `}</style>
         </section>
     );
 };
