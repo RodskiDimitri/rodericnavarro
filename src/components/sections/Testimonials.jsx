@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
-import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { testimonialsData as testimonials } from '../../data/content';
 
 // Variants for the entering/exiting card only
@@ -22,49 +22,72 @@ const cardVariants = {
     })
 };
 
-const TestimonialCard = ({ quote, name, role, industry, rating, accentColor }) => {
+const TestimonialCard = ({ quote, name, role, industry, accentColor, image }) => {
     return (
         <div
             className="glass glow-hover"
             style={{
                 width: '100%',
-                padding: '1.5rem 1.25rem',
+                padding: '3rem 1.5rem 2rem 1.5rem', // More top padding for the floating avatar
                 borderRadius: '16px',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1rem',
+                gap: '1.25rem',
                 position: 'relative',
-                overflow: 'hidden',
-                height: '100%'
+                marginTop: '40px', // Space for the overlapping avatar
+                height: 'calc(100% - 40px)'
             }}
         >
-            {/* Quote icon */}
+            {/* Floating Avatar */}
             <div style={{
                 position: 'absolute',
-                top: '1.5rem',
-                right: '1.5rem',
-                color: accentColor,
-                opacity: 0.15
+                top: 0,
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 10
             }}>
-                <Quote size={48} />
-            </div>
-
-            {/* Star rating */}
-            <div style={{ display: 'flex', gap: '4px' }}>
-                {Array.from({ length: rating }).map((_, i) => (
-                    <Star key={i} size={18} fill={accentColor} color={accentColor} />
-                ))}
+                <div style={{
+                    width: '72px', // Slightly larger for the floating effect
+                    height: '72px',
+                    borderRadius: '50%',
+                    background: image ? 'var(--bg-secondary)' : `color-mix(in srgb, ${accentColor} 20%, transparent)`,
+                    border: `3px solid ${accentColor}`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.4rem',
+                    fontWeight: 700,
+                    color: accentColor,
+                    fontFamily: 'var(--font-heading)',
+                    overflow: 'hidden',
+                    boxShadow: `0 10px 25px rgba(0,0,0,0.5), 0 0 15px color-mix(in srgb, ${accentColor} 30%, transparent)`
+                }}>
+                    {image ? (
+                        <img 
+                            src={image} 
+                            alt={name} 
+                            style={{ 
+                                width: '100%', 
+                                height: '100%', 
+                                objectFit: 'cover' 
+                            }} 
+                        />
+                    ) : (
+                        name.split(' ').map(n => n[0]).join('')
+                    )}
+                </div>
             </div>
 
             {/* Quote text */}
             <p style={{
                 color: 'var(--text-main)',
-                fontSize: '0.9rem',
-                lineHeight: 1.5,
+                fontSize: '0.95rem',
+                lineHeight: 1.6,
                 fontStyle: 'italic',
                 flex: 1,
                 position: 'relative',
-                zIndex: 2
+                zIndex: 2,
+                textAlign: 'center' // Centered text matches the floating avatar style
             }}>
                 "{quote}"
             </p>
@@ -72,43 +95,44 @@ const TestimonialCard = ({ quote, name, role, industry, rating, accentColor }) =
             {/* Author */}
             <div style={{
                 display: 'flex',
-                alignItems: 'center',
+                alignItems: 'flex-start',
+                justifyContent: 'space-between',
                 gap: '1rem',
                 borderTop: '1px solid var(--glass-border)',
-                paddingTop: '1.5rem'
+                paddingTop: '1.5rem',
+                marginTop: 'auto',
+                minHeight: '80px'
             }}>
-                <div style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '50%',
-                    background: `color-mix(in srgb, ${accentColor} 20%, transparent)`,
-                    border: `2px solid color-mix(in srgb, ${accentColor} 40%, transparent)`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '1.1rem',
-                    fontWeight: 700,
-                    color: accentColor,
-                    fontFamily: 'var(--font-heading)'
-                }}>
-                    {name.split(' ').map(n => n[0]).join('')}
-                </div>
-                <div>
+                <div style={{ minWidth: 0 }}>
                     <p style={{
                         color: 'var(--text-main)',
-                        fontWeight: 600,
-                        margin: 0,
-                        fontSize: '0.95rem'
+                        fontWeight: 700,
+                        margin: '0 0 4px 0',
+                        fontSize: '1rem'
                     }}>
                         {name}
                     </p>
                     <p style={{
                         color: 'var(--text-muted)',
                         margin: 0,
-                        fontSize: '0.85rem'
+                        fontSize: '0.8rem',
+                        lineHeight: 1.4
                     }}>
-                        {role} · {industry}
+                        {role}
+                        <span style={{ display: 'block', opacity: 0.7, fontSize: '0.75rem', marginTop: '2px' }}>
+                            {industry}
+                        </span>
                     </p>
+                </div>
+
+                {/* Quote icon at bottom right */}
+                <div style={{
+                    color: accentColor,
+                    opacity: 0.2,
+                    flexShrink: 0,
+                    marginTop: '4px'
+                }}>
+                    <Quote size={28} />
                 </div>
             </div>
         </div>
@@ -262,7 +286,9 @@ const Testimonials = () => {
                                             }}
                                             style={{
                                                 flex: `0 0 ${flexBasis}`,
-                                                minWidth: 0
+                                                minWidth: 0,
+                                                display: 'flex',
+                                                alignItems: 'stretch' // Ensure the TestimonialCard stretches to full height
                                             }}
                                         >
                                             <TestimonialCard {...testimonial} />

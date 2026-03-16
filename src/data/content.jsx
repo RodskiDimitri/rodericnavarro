@@ -8,6 +8,10 @@ import {
     Building2, Landmark, Rocket
 } from 'lucide-react';
 import React from 'react';
+import lorieImg from '../assets/lorie.jpg';
+import lizaImg from '../assets/liza.jpg';
+import johnImg from '../assets/john.jpg';
+import rickyImg from '../assets/ricky.jpg';
 
 // About Section Stats
 export const aboutStats = [
@@ -180,26 +184,29 @@ export const targetMarkets = [
 // Testimonials
 export const testimonialsData = [
     {
-        quote: "Roderic cut our customer service response time by over 60% in the first month. We didn't think that kind of improvement was possible without hiring more staff.",
-        name: "J. Reyes",
-        role: "Operations Director",
-        industry: "Healthcare SME",
+        quote: "I highly recommend Roderic for his exceptional expertise in IT administration, AI technology, and AI engineering. He has a remarkable ability to design smart systems that streamline operations and significantly reduce workload for companies. His solutions help businesses save time, improve efficiency, and simplify complex processes. What makes him stand out is his ability to explain technical concepts in a clear and practical way.",
+        name: "Lorie Santelices",
+        role: "Virtual Executive Assistant for C-Level Leaders",
+        industry: "Admin, Social Media & AI Support",
+        image: lorieImg,
         rating: 5,
         accentColor: "var(--accent-primary)"
     },
     {
         quote: "His approach to AI integration was practical, not theoretical. Within two weeks, he automated workflows that used to take my team hours every day.",
-        name: "M. Santos",
-        role: "CEO",
-        industry: "E-Commerce Startup",
+        name: "Ricky Repol",
+        role: "Senior WordPress Developer",
+        industry: "Divi, Elementor, & GHL Expert",
+        image: rickyImg,
         rating: 5,
         accentColor: "var(--accent-secondary)"
     },
     {
-        quote: "What impressed me most was how he explained complex technology in terms our entire leadership team could understand. The ROI was clear from day one.",
-        name: "A. Torres",
-        role: "Managing Partner",
-        industry: "Professional Services",
+        quote: "His dedication, expertise, and unwavering commitment to excellence have propelled our IT & Innovation department to new heights. Through his leadership, we have overcome challenges, embraced innovation, and achieved remarkable success. His steadfast guidance has been the cornerstone of our accomplishments, and we are profoundly grateful for his five years of exceptional service.",
+        name: "John Victoria",
+        role: "CEO",
+        industry: "Polianna, LLC",
+        image: johnImg,
         rating: 5,
         accentColor: "#00ff88"
     },
@@ -208,6 +215,7 @@ export const testimonialsData = [
         name: "Liza Rickard",
         role: "Owner",
         industry: "IMG GROUP",
+        image: lizaImg,
         rating: 5,
         accentColor: "#a855f7"
     }
