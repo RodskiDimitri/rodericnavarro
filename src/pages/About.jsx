@@ -4,7 +4,7 @@ import AboutSection from '../components/sections/About';
 
 const About = () => {
     return (
-        <div style={{ height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
             <SEO 
                 title="About Roderic Navarro | AI Consultant"
                 description="Learn about Roderic Navarro's 17+ years of experience in IT operations, strategy, and AI tech consulting."

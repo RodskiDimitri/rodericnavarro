@@ -5,7 +5,7 @@ import Skills from '../components/sections/Skills';
 
 const Resume = () => {
     return (
-        <div className="container" style={{ padding: '2rem 1.5rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div className="container" style={{ padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column' }}>
             <SEO 
                 title="Resume | Roderic Navarro"
                 description="Review Roderic Navarro's professional journey, including roles as an AI Technology Consultant and IT Innovation Manager."
@@ -18,12 +18,12 @@ const Resume = () => {
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', flex: 1, minHeight: '600px' }} className="resume-grid">
                 <div style={{ position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ flex: 1, overflowY: 'auto', paddingRight: '1rem', paddingBottom: '2rem' }} className="custom-scrollbar">
+                    <div style={{ paddingRight: '1rem', paddingBottom: '2rem' }}>
                         <Experience />
                     </div>
                 </div>
                 <div style={{ position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ flex: 1, overflowY: 'auto', paddingRight: '1rem', paddingBottom: '2rem' }} className="custom-scrollbar">
+                    <div style={{ paddingRight: '1rem', paddingBottom: '2rem' }}>
                         <Skills />
                     </div>
                 </div>

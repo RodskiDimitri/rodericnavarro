@@ -183,7 +183,7 @@ export default function PageTransition({ children, pathname }) {
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100%', overflow: 'clip' }}>
       {/* The Dynamic Overlay */}
       {!prefersReducedMotion && overlay}
 

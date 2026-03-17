@@ -34,7 +34,7 @@ const About = () => {
 
     return (
         <section id="about" className="section relative" style={{ position: 'relative', zIndex: 5, overflow: 'hidden' }}>
-            <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '4rem', overflowX: 'hidden' }}>
+            <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
                 
                 {/* 1. Bio Section */}
                 <div>

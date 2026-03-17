@@ -21,7 +21,7 @@ const Home = () => {
     };
 
     return (
-        <div style={{ height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
             <SEO 
                 title="Roderic Navarro | AI Consultant & IT Manager"
                 description="Strategic AI implementation consulting and IT management. Specializing in resolving complex tech issues to drive ROI."

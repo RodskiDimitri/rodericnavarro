@@ -147,7 +147,6 @@ a {
   overflow-x: hidden;
   padding-right: 2rem;
   padding-bottom: 2rem;
-  /* Re-add bottom padding here so scrollbar goes to bottom */
   min-width: 0;
   /* Prevents flex child from overflowing parent */
 }
@@ -177,7 +176,7 @@ a {
     padding-top: 5rem;
     gap: 0; /* Remove gap so it stacks flush */
     overflow-x: hidden;
-    height: auto; /* Let wrapper expand naturallly on mobile */
+    height: auto; /* Let wrapper expand naturally on mobile */
     min-height: 100vh;
   }
 
