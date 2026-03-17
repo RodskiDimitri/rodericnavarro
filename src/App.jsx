@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import PageTransition from './components/PageTransition'; // Import our new dynamic transition
+import FloatingNav from './components/FloatingNav';
 import { siteConfig } from './data/config';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
             <Footer />
           </div>
         </div>
+        <FloatingNav />
       </div>
     </div>
   );
