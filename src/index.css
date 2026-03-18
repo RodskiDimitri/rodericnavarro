@@ -19,12 +19,41 @@
   --glass-bg: rgba(19, 19, 22, 0.7);
   --glass-border: rgba(255, 255, 255, 0.05);
 
+  /* Hover & Scrollbar (abstracted for theme) */
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  --hover-border: rgba(255, 255, 255, 0.2);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.1);
+  --bg-gradient-end: #15151e;
+  --transparent-fade: rgba(255, 255, 255, 0);
+
   /* Typography */
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 
   /* Spacing */
   --section-padding: 3rem;
+}
+
+html.light {
+  --bg-main: #fcfcfc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f3f4f6;
+  --bg-gradient-end: #e5e7eb;
+  
+  --text-main: #111827;
+  --text-muted: #4b5563;
+  
+  --border-color: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  
+  --hover-bg: rgba(0, 0, 0, 0.04);
+  --hover-border: rgba(0, 0, 0, 0.15);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.15);
+  --transparent-fade: rgba(0, 0, 0, 0);
+  
+  --accent-primary: #00a8e8; 
+  --accent-glow: rgba(0, 168, 232, 0.25);
 }
 
 * {
@@ -50,7 +79,7 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   /* Updated Background */
-  background: linear-gradient(135deg, var(--bg-main) 0%, #15151e 100%);
+  background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-gradient-end) 100%);
   background-attachment: fixed;
 }
 
@@ -69,7 +98,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--hover-border);
 }
 
 h1,
@@ -131,10 +160,10 @@ a {
     /* padding + sidebar width + half the gap */
     width: 1px;
     background: linear-gradient(to bottom,
-        rgba(255, 255, 255, 0) 0%,
+        var(--transparent-fade) 0%,
         var(--border-color) 20%,
         var(--border-color) 80%,
-        rgba(255, 255, 255, 0) 100%);
+        var(--transparent-fade) 100%);
   }
 }
 
@@ -161,7 +190,7 @@ a {
 }
 
 .main-card::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 
@@ -302,8 +331,8 @@ a {
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--hover-bg);
+  border-color: var(--hover-border);
 }
 
 @media (min-width: 1025px) {
@@ -322,7 +351,7 @@ a {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 

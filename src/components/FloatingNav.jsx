@@ -64,7 +64,7 @@ const FloatingNav = () => {
 
                 .floating-nav-pill {
                     background: rgba(19, 19, 22, 0.5);
-                    border: 1px solid rgba(255, 255, 255, 0.06);
+                    border: 1px solid var(--glass-border);
                     border-radius: 30px;
                     display: flex;
                     flex-direction: column;
@@ -102,7 +102,7 @@ const FloatingNav = () => {
 
                 .nav-btn:hover {
                     color: var(--accent-primary);
-                    background: rgba(255, 255, 255, 0.05);
+                    background: var(--hover-bg);
                     transform: scale(1.1);
                 }
 

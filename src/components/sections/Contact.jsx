@@ -82,7 +82,7 @@ const Contact = () => {
                                 justifyContent: 'center',
                                 textAlign: 'center',
                                 border: '1px solid var(--glass-border)',
-                                background: 'rgba(255, 255, 255, 0.02)'
+                                background: 'var(--hover-bg)'
                             }}>
                                 <div style={{
                                     color: 'var(--accent-primary)',

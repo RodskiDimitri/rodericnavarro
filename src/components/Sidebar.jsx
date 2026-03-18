@@ -3,8 +3,9 @@ import { Linkedin, Mail } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import ParticleNetwork from './ui/ParticleNetwork';
 import { siteConfig } from '../data/config';
+import ThemeToggle from './ThemeToggle';
 
-const Sidebar = () => {
+const Sidebar = ({ theme, toggleTheme }) => {
   const navigate = useNavigate();
   const navLinks = siteConfig.navLinks.filter(link => link.name !== 'Contact');
   return (
@@ -41,6 +42,9 @@ const Sidebar = () => {
             <a href={`mailto:${siteConfig.personal.email}`} aria-label="Email" style={{ padding: 0, border: 'none', background: 'none', display: 'flex', cursor: 'pointer' }}>
               <div className="social-btn"><Mail size={20} /></div>
             </a>
+            <div style={{ display: 'flex', alignItems: 'center', marginLeft: '0.5rem' }}>
+              <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            </div>
           </div>
         </div>
 
@@ -189,7 +193,7 @@ const Sidebar = () => {
 
         .nav-item:hover {
           color: var(--text-main);
-          background: rgba(255, 255, 255, 0.05);
+          background: var(--hover-bg);
         }
 
         .nav-item.active {

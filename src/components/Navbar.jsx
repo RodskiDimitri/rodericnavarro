@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Cpu } from 'lucide-react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { siteConfig } from '../data/config';
+import ThemeToggle from './ThemeToggle';
 
-const Navbar = () => {
+const Navbar = ({ theme, toggleTheme }) => {
     const navigate = useNavigate();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -70,19 +71,26 @@ const Navbar = () => {
                             </NavLink>
                         );
                     })}
+                    <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
                     <button onClick={() => navigate('/contact')} className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0.5rem 1.25rem', borderRadius: '99px', border: '1px solid var(--border-color)', fontSize: '0.9rem', transition: 'all 0.3s', background: 'transparent', color: 'var(--text-main)', cursor: 'pointer' }}>
                         Let's Talk
                     </button>
                 </div>
 
-                {/* Mobile Toggle */}
-                <button
-                    className="mobile-toggle"
-                    style={{ background: 'none', border: 'none', color: 'var(--text-main)', cursor: 'pointer', display: 'none' }}
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                    {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
+                {/* Mobile Controls */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div className="mobile-toggle-theme" style={{ display: 'none' }}>
+                        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+                    </div>
+                    {/* Mobile Toggle */}
+                    <button
+                        className="mobile-toggle"
+                        style={{ background: 'none', border: 'none', color: 'var(--text-main)', cursor: 'pointer', display: 'none' }}
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu */}
@@ -128,6 +136,7 @@ const Navbar = () => {
         @media (max-width: 768px) {
           .hidden-mobile { display: none !important; }
           .mobile-toggle { display: block !important; }
+          .mobile-toggle-theme { display: block !important; }
         }
       `}</style>
         </nav>

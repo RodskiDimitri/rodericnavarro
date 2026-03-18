@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -11,9 +11,28 @@ import { siteConfig } from './data/config';
 function App() {
   const location = useLocation();
 
+  // Theme State Management
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
+
   useEffect(() => {
     document.title = siteConfig.meta.title;
   }, []);
+
+  // Apply theme class and save to localStorage
+  useEffect(() => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark');
+  };
 
   // Scroll to top on route change
   useEffect(() => {
@@ -25,10 +44,10 @@ function App() {
   return (
     <div className="app-container">
       {/* Mobile Navbar */}
-      <Navbar />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
 
       <div className="layout-wrapper">
-        <Sidebar />
+        <Sidebar theme={theme} toggleTheme={toggleTheme} />
 
         <div className="main-card" style={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
           <main style={{ flex: 1, position: 'relative' }}>

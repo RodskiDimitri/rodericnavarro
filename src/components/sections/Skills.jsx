@@ -114,8 +114,8 @@ const Skills = () => {
             gap: '0.4rem',
             padding: '0.35rem 0.75rem',
             borderRadius: '9999px',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            background: 'rgba(255, 255, 255, 0.03)',
+            border: '1px solid var(--border-color)',
+            background: 'var(--hover-bg)',
             color: 'var(--text-muted)',
             fontSize: '0.75rem',
             fontWeight: 500,
@@ -186,7 +186,7 @@ const Skills = () => {
                                             e.currentTarget.style.transform = 'scale(1.05)';
                                         }}
                                         onMouseLeave={(e) => {
-                                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                                            e.currentTarget.style.borderColor = 'var(--border-color)';
                                             e.currentTarget.style.color = 'var(--text-muted)';
                                             e.currentTarget.style.boxShadow = 'none';
                                             e.currentTarget.style.transform = 'scale(1)';
