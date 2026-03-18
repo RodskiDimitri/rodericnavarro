@@ -13,7 +13,10 @@ function App() {
 
   // Theme State Management
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'dark';
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') || 'dark';
+    }
+    return 'dark';
   });
 
   useEffect(() => {
@@ -22,12 +25,14 @@ function App() {
 
   // Apply theme class and save to localStorage
   useEffect(() => {
-    if (theme === 'light') {
-      document.documentElement.classList.add('light');
-    } else {
-      document.documentElement.classList.remove('light');
+    if (typeof window !== 'undefined') {
+      if (theme === 'light') {
+        document.documentElement.classList.add('light');
+      } else {
+        document.documentElement.classList.remove('light');
+      }
+      localStorage.setItem('theme', theme);
     }
-    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
