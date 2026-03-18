@@ -184,7 +184,7 @@ export const targetMarkets = [
 // Testimonials
 export const testimonialsData = [
     {
-        quote: "I highly recommend Roderic for his exceptional expertise in IT administration, AI technology, and AI engineering. He has a remarkable ability to design smart systems that streamline operations and significantly reduce workload for companies. His solutions help businesses save time, improve efficiency, and simplify complex processes. What makes him stand out is his ability to explain technical concepts in a clear and practical way.",
+        quote: "I highly recommend Roderic for his exceptional expertise in IT administration, AI technology, and AI engineering. His solutions help businesses save time, improve efficiency, and simplify complex processes. What makes him stand out is his ability to explain technical concepts in a clear and practical way.",
         name: "Lorie Santelices",
         role: "Virtual Executive Assistant for C-Level Leaders",
         industry: "Admin, Social Media & AI Support",

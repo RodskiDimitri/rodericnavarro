@@ -28,14 +28,14 @@ const TestimonialCard = ({ quote, name, role, industry, accentColor, image }) =>
             className="glass glow-hover"
             style={{
                 width: '100%',
+                flex: 1,
                 padding: '3rem 1.5rem 2rem 1.5rem', // More top padding for the floating avatar
                 borderRadius: '16px',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1.25rem',
                 position: 'relative',
-                marginTop: '40px', // Space for the overlapping avatar
-                height: 'calc(100% - 40px)'
+                marginTop: '40px' // Space for the overlapping avatar
             }}
         >
             {/* Floating Avatar */}
@@ -101,7 +101,7 @@ const TestimonialCard = ({ quote, name, role, industry, accentColor, image }) =>
                 borderTop: '1px solid var(--glass-border)',
                 paddingTop: '1.5rem',
                 marginTop: 'auto',
-                minHeight: '80px'
+                minHeight: '110px'
             }}>
                 <div style={{ minWidth: 0 }}>
                     <p style={{
@@ -288,6 +288,7 @@ const Testimonials = () => {
                                                 flex: `0 0 ${flexBasis}`,
                                                 minWidth: 0,
                                                 display: 'flex',
+                                                flexDirection: 'column',
                                                 alignItems: 'stretch' // Ensure the TestimonialCard stretches to full height
                                             }}
                                         >
