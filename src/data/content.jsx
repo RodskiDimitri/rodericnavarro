@@ -193,7 +193,7 @@ export const testimonialsData = [
         accentColor: "var(--accent-primary)"
     },
     {
-        quote: "His approach to AI integration was practical, not theoretical. Within two weeks, he automated workflows that used to take my team hours every day.",
+        quote: "I worked with Rod at Polianna, where he served as our Admin and IT Manager. Rod was always reliable and quick to help whenever there were technical issues or system problems. He made sure our systems were running smoothly so the team could focus on our work.\n\nHe is very organized and handles both admin and IT tasks well. If something needed to be fixed or improved, Rod would find a practical solution and explain it in a simple way that everyone could understand.\n\nRod is also easy to work with and very supportive of the team. I appreciate his patience and willingness to assist whenever someone needed help. I highly recommend him to any company looking for a dependable Admin and IT Manager.",
         name: "Ricky Repol",
         role: "Senior WordPress Developer",
         industry: "Divi, Elementor, & GHL Expert",

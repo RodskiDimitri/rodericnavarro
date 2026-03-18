@@ -106,12 +106,7 @@ const About = () => {
                     ))}
                 </div>
 
-                {/* 3. Testimonials */}
-                <div style={{ margin: '1rem 0' }}>
-                    <Testimonials />
-                </div>
-
-                {/* 4. What I Do Grid */}
+                {/* 3. What I Do Grid */}
                 <div>
                      <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -174,6 +169,11 @@ const About = () => {
                             </motion.div>
                         ))}
                     </div>
+                </div>
+
+                {/* 4. Testimonials */}
+                <div style={{ margin: '1rem 0' }}>
+                    <Testimonials />
                 </div>
 
             </div>

@@ -28,6 +28,8 @@ const TestimonialCard = ({ quote, name, role, industry, accentColor, image }) =>
             className="glass glow-hover"
             style={{
                 width: '100%',
+                height: '100%',
+                minHeight: '420px', // Locks the cards to a uniform height to match the longest text
                 flex: 1,
                 padding: '3rem 1.5rem 2rem 1.5rem', // More top padding for the floating avatar
                 borderRadius: '16px',
