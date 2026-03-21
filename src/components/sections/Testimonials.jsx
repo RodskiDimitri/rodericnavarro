@@ -28,8 +28,7 @@ const TestimonialCard = ({ quote, name, role, industry, accentColor, image }) =>
             className="glass glow-hover"
             style={{
                 width: '100%',
-                height: '100%',
-                minHeight: '420px', // Locks the cards to a uniform height to match the longest text
+                height: '650px', // Adjusted for 2-column layout width
                 flex: 1,
                 padding: '3rem 1.5rem 2rem 1.5rem', // More top padding for the floating avatar
                 borderRadius: '16px',
@@ -89,7 +88,9 @@ const TestimonialCard = ({ quote, name, role, industry, accentColor, image }) =>
                 flex: 1,
                 position: 'relative',
                 zIndex: 2,
-                textAlign: 'center' // Centered text matches the floating avatar style
+                textAlign: 'center', // Centered text matches the floating avatar style
+                overflowY: 'auto', // Fallback for extra long content
+                paddingRight: '0.5rem'
             }}>
                 "{quote}"
             </p>
@@ -153,7 +154,7 @@ const Testimonials = () => {
             } else if (window.innerWidth < 1024) {
                 setVisibleCount(2);
             } else {
-                setVisibleCount(3);
+                setVisibleCount(2); // Using 2 instead of 3 to provide more width for longer testimonials
             }
         };
 
@@ -256,7 +257,7 @@ const Testimonials = () => {
                 </div>
 
                 {/* Slider: one card enters/exits at a time, others reposition */}
-                <div style={{ overflow: 'hidden', padding: '1rem 0', position: 'relative' }}>
+                <div style={{ overflow: 'hidden', padding: '1rem 0', position: 'relative', height: '700px' }}>
                     <LayoutGroup>
                         <div style={{
                             display: 'flex',
