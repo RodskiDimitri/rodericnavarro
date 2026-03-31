@@ -23,7 +23,7 @@ const Home = () => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <SEO 
-                title="Roderic Navarro | AI Consultant & IT Manager"
+                title="Roderic Navarro | AI Consultant in Parañaque, Metro Manila"
                 description="Strategic AI implementation consulting and IT management. Specializing in resolving complex tech issues to drive ROI."
             />
             <Hero setActiveSection={handleNavigation} />
